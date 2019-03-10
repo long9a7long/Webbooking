@@ -47,9 +47,9 @@
                             <label>Convenient</label>
                             <select class="form-control select2" name="convenient[]" id="convenient"
                                 multiple="multiple" data-placeholder="Chọn tiện nghi" style="width: 100%;">
-                                <option value="1">WiFi</option>
-                                <option value="2">Điều hòa nhiệt độ</option>
-                                <option value="3">Dịch vụ đưa đón sân bay</option>
+                                <option value="WiFi">WiFi</option>
+                                <option value="Điều hòa nhiệt độ">Điều hòa nhiệt độ</option>
+                                <option value="Dịch vụ đưa đón sân bay">Dịch vụ đưa đón sân bay</option>
                             </select> 
                         </div>
      

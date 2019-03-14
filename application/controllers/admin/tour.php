@@ -2,7 +2,7 @@
 
 class Tour extends CI_Controller {
 
-	public function __construct(){
+    public function __construct(){
         parent::__construct();         
     } 
 
@@ -14,17 +14,7 @@ class Tour extends CI_Controller {
         $data['list_tour']=$this->tours_model->getList();
         $this->load->view("admin/template",$data);
    }
-   function test(){
-    $this->load->model('tours_model');
-    $tour_title="Tour Du Lịch Trải Nghiệm Cù Lao Xanh";
-    $tour_slug=url_title($tour_title, 'underscore', TRUE);
-    $this->load->helper(array('string', "text"));
-    if($this->tours_model->check_tour_slug($tour_slug)){
-        
-        $tour_slug=convert_accented_characters($tour_slug.random_string('alnum', 8));
-    }
-    echo convert_accented_characters($tour_slug);
-   }
+   
    function add()
    {
         $data['temp'] = "admin/tour/add_tour";
@@ -33,7 +23,7 @@ class Tour extends CI_Controller {
         
    }
    function edit(){
-        if ($this->uri->segment(3) === FALSE)
+        if ($this->uri->segment(4) === FALSE)
         {
                 redirect(base_url()."admin/tour");
         }
@@ -45,7 +35,7 @@ class Tour extends CI_Controller {
         $data['title'] = "Chỉnh sửa thông tin tour";
         $this->load->model('tours_model');
         $tour=$this->tours_model->get_tour_info($tour_id);
-        if(count($tour)<=0){
+        if(empty($tour)){
             redirect(base_url()."admin/tour");
         }
         else {
@@ -268,7 +258,10 @@ class Tour extends CI_Controller {
                 $config['allowed_types'] = 'jpg|jpeg|png|gif';
                 $config['max_size'] = '30000';
                 $config['remove_spaces'] = true;
-                
+
+                $path = realpath($uploadPath);
+                if($path === false && !is_dir($path)) 
+                    mkdir($uploadPath);
                 // Load and initialize upload library
                 $this->load->library('upload', $config);
                 $this->upload->initialize($config);
@@ -322,7 +315,9 @@ class Tour extends CI_Controller {
             $config['allowed_types'] = 'jpg|jpeg|png|gif';
             $config['max_size'] = '30000';
             $config['remove_spaces'] = true;
-
+            $path = realpath($uploadPath);
+            if($path === false && !is_dir($path)) 
+                mkdir($uploadPath);
             $this->load->library('upload', $config);
 
             if ( ! $this->upload->do_upload($img_post_name))

@@ -129,6 +129,9 @@
       }).on("change", function() {
         add_filter_checkout_date_tour(this.value);
     });
+
+    //slide images tour
+    
 })(jQuery);
 
 function add_filter_duration(min,max){

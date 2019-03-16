@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/default/css/bootstrap-datepicker.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/default/css/jquery.timepicker.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-autocomplete/1.0.7/jquery.auto-complete.min.css">
-    
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/default/css/flaticon.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/default/css/icomoon.css">
     <?php
@@ -40,7 +40,7 @@
     <?php $this->load->view("default/menu"); ?>
     <!-- END nav -->
     
-  	<?php $this->load->view($slide); ?>
+  	<?php if(isset($slide)) $this->load->view($slide); ?>
 
 		<?php $this->load->view($temp); ?>
 

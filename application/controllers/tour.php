@@ -10,17 +10,27 @@ class Tour extends CI_Controller {
 
 	public function index()
 	{
-        $this -> data['title'] = "Booking Tour";  
-        $this -> data['slide'] = "default/tour/slide"; 
+        $this -> data['title'] = "Booking Tour";
         $this -> data['temp'] = "default/tour/tour";
         
+        $this -> data['after_header'] = "default/tour/slide"; 
+
+        $this -> data['custom_js'] = array(
+            "assets/default/js/cat_nav_mobile.js",
+            "assets/default/js/map.js",
+            "assets/default/js/infobox.js",
+            "assets/default/js/tour.js");
+
+        $this -> data['custom_js_external'] = array(
+            "https://maps.googleapis.com/maps/api/js");
+        
         $this->load->view("default/template",$this ->data);
+        
     }
 
     public function detail()
     {
-        $this -> data['title'] = "Booking Tour";  
-        //$this -> data['slide'] = "default/tour/slide"; 
+        $this -> data['title'] = "Booking Tour";
         $this -> data['temp'] = "default/tour/tour-detail";
         
         $this->load->view("default/template",$this ->data);

@@ -26,7 +26,7 @@ $.notify({
 setTimeout(function() {
 $.notify({
 	// options
-	icon: 'img/notify_img.jpg',
+	icon: './assets/default/img/notify_img.jpg',
 	title: "<h4>Most Viewed Tour</h4> ",
 	message: "<p>Arch de Triomphe Tour (13 min. ago).</p><a href=\"single_tour.html\" target=\"_blank\" class=\"btn_1\">Read more</a> "
 },{

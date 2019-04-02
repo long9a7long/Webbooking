@@ -1,80 +1,112 @@
+
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title><?php echo $title; ?></title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Alex+Brush" rel="stylesheet">
 
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/default/css/open-iconic-bootstrap.min.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/default/css/animate.css">
-    
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/default/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/default/css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/default/css/magnific-popup.css">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Citytours - Premium site template for city tours agencies, transfers and tickets.">
+  <meta name="author" content="Ansonika">
+  <title><?php echo $title; ?></title>
 
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/default/css/aos.css">
+    <!-- Favicons-->
+  <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/default/img/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" type="image/x-icon" href="<?php echo base_url(); ?>assets/default/img/apple-touch-icon-57x57-precomposed.png">
+  <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="<?php echo base_url(); ?>assets/default/img/apple-touch-icon-72x72-precomposed.png">
+  <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="<?php echo base_url(); ?>assets/default/img/apple-touch-icon-114x114-precomposed.png">
+  <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="<?php echo base_url(); ?>assets/default/img/apple-touch-icon-144x144-precomposed.png">
 
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/default/css/ionicons.min.css">
+    <!-- GOOGLE WEB FONT -->
+  <link href="https://fonts.googleapis.com/css?family=Gochi+Hand|Lato:300,400|Montserrat:400,700" rel="stylesheet">
 
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/default/css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/default/css/jquery.timepicker.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-autocomplete/1.0.7/jquery.auto-complete.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/default/css/flaticon.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/default/css/icomoon.css">
-    <?php
-    if(isset($custom_css))
-      if(!empty($custom_css)){
-        foreach($custom_css as $css){
-          echo "<link rel='stylesheet' href='".base_url().$css."'></script>";
-        }
-      }
-    ?>
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/default/css/style.css">
-  </head>
-  <body>
-    
-    <?php $this->load->view("default/menu"); ?>
-    <!-- END nav -->
-    
-  	<?php if(isset($slide)) $this->load->view($slide); ?>
+    <!-- COMMON CSS -->
+  <link href="<?php echo base_url(); ?>assets/default/css/bootstrap.min.css" rel="stylesheet">
+  <link href="<?php echo base_url(); ?>assets/default/css/style.css" rel="stylesheet">
+  <link href="<?php echo base_url(); ?>assets/default/css/vendors.css" rel="stylesheet">
 
-		<?php $this->load->view($temp); ?>
+  <!-- CUSTOM CSS -->
+  <link href="<?php echo base_url(); ?>assets/default/css/custom.css" rel="stylesheet">
 
-		<?php $this->load->view("default/footer"); ?>
-
-  <!-- loader -->
-  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
-
-
-  <script src="<?php echo base_url(); ?>assets/default/js/jquery.min.js"></script>
-  <script src="<?php echo base_url(); ?>assets/default/js/jquery-migrate-3.0.1.min.js"></script>
-  <script src="<?php echo base_url(); ?>assets/default/js/popper.min.js"></script>
-  <script src="<?php echo base_url(); ?>assets/default/js/bootstrap.min.js"></script>
-  <script src="<?php echo base_url(); ?>assets/default/js/jquery.easing.1.3.js"></script>
-  <script src="<?php echo base_url(); ?>assets/default/js/jquery.waypoints.min.js"></script>
-  <script src="<?php echo base_url(); ?>assets/default/js/jquery.stellar.min.js"></script>
-  <script src="<?php echo base_url(); ?>assets/default/js/owl.carousel.min.js"></script>
-  <script src="<?php echo base_url(); ?>assets/default/js/jquery.magnific-popup.min.js"></script>
-  <script src="<?php echo base_url(); ?>assets/default/js/aos.js"></script>
-  <script src="<?php echo base_url(); ?>assets/default/js/jquery.animateNumber.min.js"></script>
-  <script src="<?php echo base_url(); ?>assets/default/js/bootstrap-datepicker.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-autocomplete/1.0.7/jquery.auto-complete.min.js"></script>
-  <script src="<?php echo base_url(); ?>assets/default/js/scrollax.min.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-  <script src="<?php echo base_url(); ?>assets/default/js/google-map.js"></script>
-  <script src="<?php echo base_url(); ?>assets/default/js/main.js"></script>
-  <?php
-  if(isset($custom_script))
-    if(!empty($custom_script)){
-      foreach($custom_script as $script){
-        echo "<script src='".base_url().$script."'></script>";
+  
+  <?php 
+    if(!empty($custom_css)){
+      foreach($custom_css as $css){
+        echo "<link type='text/css' href='".base_url().$css."' rel='stylesheet'>";
       }
     }
   ?>
+
+</head>
+
+<body>
+
+  <div id="preloader">
+        <div class="sk-spinner sk-spinner-wave">
+            <div class="sk-rect1"></div>
+            <div class="sk-rect2"></div>
+            <div class="sk-rect3"></div>
+            <div class="sk-rect4"></div>
+            <div class="sk-rect5"></div>
+        </div>
+  </div>
+  <!-- End Preload -->
+
+  <div class="layer"></div>
+  <!-- Mobile menu overlay mask -->
+
+  <!-- Header================================================== -->
+  <?php $this->load->view("default/header"); ?>
+  <!-- End Header -->
+  
+  <main>
+
+    <?php 
+    if(isset($after_header))
+      $this->load->view($after_header); 
+    ?>
+    <!-- END REVOLUTION SLIDER -->
+
+    <?php 
+    if(isset($temp))
+      $this->load->view($temp); 
+    ?>
+
+  </main>
+  <!-- End main -->
+  <?php $this->load->view("default/footer"); ?>
+  <!-- End footer -->
+
+  <div id="toTop"></div><!-- Back to top button -->
+  
+  <!-- Search Menu -->
+  
+  <!-- End Search Menu -->
+  
+  <!-- Sign In Popup -->
+  
+  <!-- /Sign In Popup -->
+
+  <!-- Common scripts -->
+  <script src="<?php echo base_url(); ?>assets/default/js/jquery-2.2.4.min.js"></script>
+  <script src="<?php echo base_url(); ?>assets/default/js/common_scripts_min.js"></script>
+  <script src="<?php echo base_url(); ?>assets/default/js/functions.js"></script>
+
+  <!-- Custom script  -->
+  <?php 
+    if(!empty($custom_js_external)){
+      foreach($custom_js_external as $script){
+        echo "<script src='".$script."'></script>";
+      }
+    }
+    if(!empty($custom_js)){
+      foreach($custom_js as $script){
+        echo "<script src='".base_url().$script."'></script>";
+      }
+    }
     
-  </body>
+  ?>
+
+</body>
+
 </html>

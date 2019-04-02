@@ -13,8 +13,7 @@ class Tour extends CI_Controller {
         $this -> data['title'] = "Booking Tour";  
         $this -> data['slide'] = "default/tour/slide"; 
         $this -> data['temp'] = "default/tour/tour";
-        $this -> data['custom_script'] = array("assets/admin/bower_components/select2/dist/js/select2.full.min.js","assets/default/js/tour.js");
-        $this -> data['custom_css'] = array("assets/admin/bower_components/select2/dist/css/select2.min.css");
+        
         $this->load->view("default/template",$this ->data);
     }
 
@@ -23,6 +22,7 @@ class Tour extends CI_Controller {
         $this -> data['title'] = "Booking Tour";  
         //$this -> data['slide'] = "default/tour/slide"; 
         $this -> data['temp'] = "default/tour/tour-detail";
+        
         $this->load->view("default/template",$this ->data);
     }
 

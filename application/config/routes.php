@@ -53,6 +53,10 @@ $route['administrator'] = "administrator";
 $route['users/(:any)'] = "users/$1";
 $route['admin/(:any)'] = "admin/$1";
 
-$route['default_controller'] = 'welcome';
+$route['default_controller'] = 'index';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+$route['tours/(:any)'] = "tour/detail/$1";
+$route['hotels/(:any)'] = "hotel/detail/$1";
+$route['cars/(:any)'] = "car/detail/$1";

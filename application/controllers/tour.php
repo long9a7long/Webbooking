@@ -11,19 +11,34 @@ class Tour extends CI_Controller {
 	public function index()
 	{
         $this -> data['title'] = "Booking Tour";
-        $this -> data['temp'] = "default/tour/tour";
-        
+        //Set style display of list tour
+        //1: list tour
+        //2: grid tour
+        $view_style=1;
+        $view=$this->input->get('view');
+        if($view !==NULL){
+            $view_style=$this->input->get('view');
+        }
+        if($view_style==1)
+            $this -> data['temp'] = "default/tour/tour";
+        else{
+            $this -> data['temp'] = "default/tour/tour-grid";
+        }
+
+
         $this -> data['after_header'] = "default/tour/slide"; 
 
+        //import javascript internal
         $this -> data['custom_js'] = array(
             "assets/default/js/cat_nav_mobile.js",
             "assets/default/js/map.js",
             "assets/default/js/infobox.js",
             "assets/default/js/tour.js");
-
+        //import javascript external
         $this -> data['custom_js_external'] = array(
             "https://maps.googleapis.com/maps/api/js");
         
+        //load master page
         $this->load->view("default/template",$this ->data);
         
     }
@@ -31,8 +46,23 @@ class Tour extends CI_Controller {
     public function detail()
     {
         $this -> data['title'] = "Booking Tour";
+        $this -> data['after_header'] = "default/tour/tour-detail-slide"; 
+
         $this -> data['temp'] = "default/tour/tour-detail";
-        
+
+        $this -> data['after_footer'] = "default/tour/after-footer-tour-detail";
+
+        $this -> data['custom_js'] = array(
+            "assets/default/js/jquery.sliderPro.min.js",
+            "assets/default/assets/validate.js",
+            "assets/default/js/map.js",
+            "assets/default/js/infobox.js",
+            "assets/default/js/theia-sticky-sidebar.js",
+            "assets/default/js/tour-detail.js");
+
+        $this -> data['custom_js_external'] = array(
+            "https://maps.googleapis.com/maps/api/js");
+
         $this->load->view("default/template",$this ->data);
     }
 

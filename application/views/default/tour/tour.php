@@ -3,11 +3,10 @@
 	<div id="position">
 		<div class="container">
 			<ul>
-				<li><a href="#">Home</a>
+				<li><a href="<?php echo base_url(); ?>">Home</a>
 				</li>
-				<li><a href="#">Category</a>
+				<li><a href="<?php echo base_url(); ?>tour">Tour</a>
 				</li>
-				<li>Page active</li>
 			</ul>
 		</div>
 	</div>
@@ -155,7 +154,7 @@
 							</div>
 						</div>
 						<div class="col-md-6 col-sm-4 d-none d-sm-block text-right">
-							<a href="all_tours_grid.html" class="bt_filters"><i class="icon-th"></i></a> <a href="#" class="bt_filters"><i class=" icon-list"></i></a>
+							<a href="?view=2" class="bt_filters"><i class="icon-th"></i></a> <a href="?view=1" class="bt_filters"><i class=" icon-list"></i></a>
 						</div>
 
 					</div>
@@ -171,7 +170,7 @@
 								<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 							</div>
 							<div class="img_list">
-								<a href="single_tour.html"><img src="<?php echo base_url(); ?>assets/default/img/tour_box_1.jpg" alt="Image">
+								<a href="<?php echo base_url(); ?>tour/detail/abc"><img src="<?php echo base_url(); ?>assets/default/img/tour_box_1.jpg" alt="Image">
 									<div class="short_info"><i class="icon_set_1_icon-4"></i>Museums </div>
 								</a>
 							</div>
@@ -242,7 +241,7 @@
 						<div class="col-lg-2 col-md-2">
 							<div class="price_list">
 								<div><sup>$</sup>39*<span class="normal_price_list">$99</span><small>*Per person</small>
-									<p><a href="single_tour.html" class="btn_1">Details</a>
+									<p><a href="<?php echo base_url(); ?>tour/detail/abc" class="btn_1">Details</a>
 									</p>
 								</div>
 
@@ -261,7 +260,7 @@
 								<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 							</div>
 							<div class="img_list">
-								<a href="single_tour.html"><img src="<?php echo base_url(); ?>assets/default/img/tour_box_2.jpg" alt="Image">
+								<a href="<?php echo base_url(); ?>tour/detail/abc"><img src="<?php echo base_url(); ?>assets/default/img/tour_box_2.jpg" alt="Image">
 									<div class="short_info"><i class="icon_set_1_icon-44"></i>Churches</div>
 								</a>
 							</div>
@@ -332,7 +331,7 @@
 						<div class="col-lg-2 col-md-2">
 							<div class="price_list">
 								<div><sup>$</sup>42*<span class="normal_price_list">$99</span><small>*Per person</small>
-									<p><a href="single_tour.html" class="btn_1">Details</a>
+									<p><a href="<?php echo base_url(); ?>tour/detail/abc" class="btn_1">Details</a>
 									</p>
 								</div>
 
@@ -351,7 +350,7 @@
 								<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 							</div>
 							<div class="img_list">
-								<a href="single_tour.html"><img src="<?php echo base_url(); ?>assets/default/img/tour_box_3.jpg" alt="Image">
+								<a href="<?php echo base_url(); ?>tour/detail/abc"><img src="<?php echo base_url(); ?>assets/default/img/tour_box_3.jpg" alt="Image">
 									<div class="short_info"><i class="icon_set_1_icon-44"></i>Historic Buildings</div>
 								</a>
 							</div>
@@ -422,7 +421,7 @@
 						<div class="col-lg-2 col-md-2">
 							<div class="price_list">
 								<div><sup>$</sup>39*<span class="normal_price_list">$99</span><small>*Per person</small>
-									<p><a href="single_tour.html" class="btn_1">Details</a>
+									<p><a href="<?php echo base_url(); ?>tour/detail/abc" class="btn_1">Details</a>
 									</p>
 								</div>
 
@@ -441,7 +440,7 @@
 								<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 							</div>
 							<div class="img_list">
-								<a href="single_tour.html"><img src="<?php echo base_url(); ?>assets/default/img/tour_box_4.jpg" alt="Image">
+								<a href="<?php echo base_url(); ?>tour/detail/abc"><img src="<?php echo base_url(); ?>assets/default/img/tour_box_4.jpg" alt="Image">
 									<div class="short_info"><i class="icon_set_1_icon-37"></i>Walking tour</div>
 								</a>
 							</div>
@@ -512,7 +511,7 @@
 						<div class="col-lg-2 col-md-2">
 							<div class="price_list">
 								<div><sup>$</sup>69*<span class="normal_price_list">$59</span><small>*Per person</small>
-									<p><a href="single_tour.html" class="btn_1">Details</a>
+									<p><a href="<?php echo base_url(); ?>tour/detail/abc" class="btn_1">Details</a>
 									</p>
 								</div>
 
@@ -531,7 +530,7 @@
 								<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 							</div>
 							<div class="img_list">
-								<a href="single_tour.html"><img src="<?php echo base_url(); ?>assets/default/img/tour_box_14.jpg" alt="Image">
+								<a href="<?php echo base_url(); ?>tour/detail/abc"><img src="<?php echo base_url(); ?>assets/default/img/tour_box_14.jpg" alt="Image">
 									<div class="short_info"><i class="icon_set_1_icon-28"></i>Skyline tour</div>
 								</a>
 							</div>
@@ -602,7 +601,7 @@
 						<div class="col-lg-2 col-md-2">
 							<div class="price_list">
 								<div><sup>$</sup>49*<span class="normal_price_list">$59</span><small>*Per person</small>
-									<p><a href="single_tour.html" class="btn_1">Details</a>
+									<p><a href="<?php echo base_url(); ?>tour/detail/abc" class="btn_1">Details</a>
 									</p>
 								</div>
 
@@ -621,7 +620,7 @@
 								<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 							</div>
 							<div class="img_list">
-								<a href="single_tour.html"><img src="<?php echo base_url(); ?>assets/default/img/tour_box_5.jpg" alt="Image">
+								<a href="<?php echo base_url(); ?>tour/detail/abc"><img src="<?php echo base_url(); ?>assets/default/img/tour_box_5.jpg" alt="Image">
 									<div class="short_info"><i class="icon_set_1_icon-44"></i>Historic Building</div>
 								</a>
 							</div>
@@ -692,7 +691,7 @@
 						<div class="col-lg-2 col-md-2">
 							<div class="price_list">
 								<div><sup>$</sup>49*<span class="normal_price_list">$59</span><small>*Per person</small>
-									<p><a href="single_tour.html" class="btn_1">Details</a>
+									<p><a href="<?php echo base_url(); ?>tour/detail/abc" class="btn_1">Details</a>
 									</p>
 								</div>
 

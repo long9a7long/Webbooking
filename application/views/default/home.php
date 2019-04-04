@@ -1,3 +1,5 @@
+<main>
+  <?php $this->load->view("default/slide"); ?>
 <div class="container margin_60">
 
       <div class="main_title">
@@ -11,7 +13,7 @@
           <div class="tour_container">
             <div class="ribbon_3 popular"><span>Popular</span></div>
             <div class="img_container">
-              <a href="single_tour.html">
+              <a href="<?php echo base_url(); ?>tour/detail/abc">
                 <img src="<?php echo base_url(); ?>assets/default/img/tour_box_1.jpg" width="800" height="533" class="img-fluid" alt="image">
                 <div class="short_info">
                   <i class="icon_set_1_icon-44"></i>Historic Buildings<span class="price"><sup>$</sup>39</span>
@@ -38,7 +40,7 @@
           <div class="tour_container">
             <div class="ribbon_3 popular"><span>Popular</span></div>
             <div class="img_container">
-              <a href="single_tour.html">
+              <a href="<?php echo base_url(); ?>tour/detail/abc">
                 <img src="<?php echo base_url(); ?>assets/default/img/tour_box_2.jpg" width="800" height="533" class="img-fluid" alt="image">
                 <div class="short_info">
                   <i class="icon_set_1_icon-43"></i>Churches<span class="price"><sup>$</sup>45</span>
@@ -65,7 +67,7 @@
           <div class="tour_container">
             <div class="ribbon_3 popular"><span>Popular</span></div>
             <div class="img_container">
-              <a href="single_tour.html">
+              <a href="<?php echo base_url(); ?>tour/detail/abc">
                 <img src="<?php echo base_url(); ?>assets/default/img/tour_box_3.jpg" width="800" height="533" class="img-fluid" alt="image">
                 <div class="badge_save">Save<strong>30%</strong></div>
                 <div class="short_info">
@@ -93,7 +95,7 @@
           <div class="tour_container">
             <div class="ribbon_3"><span>Top rated</span></div>
             <div class="img_container">
-              <a href="single_tour.html">
+              <a href="<?php echo base_url(); ?>tour/detail/abc">
                 <img src="<?php echo base_url(); ?>assets/default/img/tour_box_4.jpg" width="800" height="533" class="img-fluid" alt="image">
                 <div class="badge_save">Save<strong>20%</strong></div>
                 <div class="short_info">
@@ -121,7 +123,7 @@
           <div class="tour_container">
             <div class="ribbon_3"><span>Top rated</span></div>
             <div class="img_container">
-              <a href="single_tour.html">
+              <a href="<?php echo base_url(); ?>tour/detail/abc">
                 <img src="<?php echo base_url(); ?>assets/default/img/tour_box_14.jpg" width="800" height="533" class="img-fluid" alt="image">
                 <div class="short_info">
                   <i class="icon_set_1_icon-28"></i>Skyline tours<span class="price"><sup>$</sup>42</span>
@@ -148,7 +150,7 @@
           <div class="tour_container">
             <div class="ribbon_3"><span>Top rated</span></div>
             <div class="img_container">
-              <a href="single_tour.html">
+              <a href="<?php echo base_url(); ?>tour/detail/abc">
                 <img src="<?php echo base_url(); ?>assets/default/img/tour_box_5.jpg" width="800" height="533" class="img-fluid" alt="image">
                 <div class="short_info">
                   <i class="icon_set_1_icon-44"></i>Historic Buildings<span class="price"><sup>$</sup>40</span>
@@ -175,7 +177,7 @@
       <!-- End row -->
       
       <p class="text-center add_bottom_30">
-        <a href="all_tours_list.html" class="btn_1 medium"><i class="icon-eye-7"></i>View all tours (144) </a>
+        <a href="tour" class="btn_1 medium"><i class="icon-eye-7"></i>View all tours (144) </a>
       </p>
 
       <hr>
@@ -191,7 +193,7 @@
           <div class="hotel_container">
             <div class="ribbon_3 popular"><span>Popular</span></div>
             <div class="img_container">
-              <a href="single_hotel.html">
+              <a href="<?php echo base_url(); ?>hotel/detail/abc">
                 <img src="<?php echo base_url(); ?>assets/default/img/hotel_1.jpg" width="800" height="533" class="img-fluid" alt="image">
                 <div class="score"><span>7.5</span>Good</div>
                 <div class="short_info hotel">
@@ -219,7 +221,7 @@
           <div class="hotel_container">
             <div class="ribbon_3 popular"><span>Popular</span></div>
             <div class="img_container">
-              <a href="single_hotel.html">
+              <a href="<?php echo base_url(); ?>hotel/detail/abc">
                 <img src="<?php echo base_url(); ?>assets/default/img/hotel_2.jpg" width="800" height="533" class="img-fluid" alt="image">
                 <div class="score"><span>9.0</span>Superb</div>
                 <div class="short_info hotel">
@@ -247,7 +249,7 @@
           <div class="hotel_container">
             <div class="ribbon_3"><span>Top rated</span></div>
             <div class="img_container">
-              <a href="single_hotel.html">
+              <a href="<?php echo base_url(); ?>hotel/detail/abc">
                 <img src="<?php echo base_url(); ?>assets/default/img/hotel_3.jpg" width="800" height="533" class="img-fluid" alt="image">
                 <div class="score"><span>9.5</span>Superb</div>
                 <div class="short_info hotel">
@@ -275,7 +277,7 @@
           <div class="hotel_container">
             <div class="ribbon_3"><span>Top rated</span></div>
             <div class="img_container">
-              <a href="single_hotel.html">
+              <a href="<?php echo base_url(); ?>hotel/detail/abc">
                 <img src="<?php echo base_url(); ?>assets/default/img/hotel_4.jpg" width="800" height="533" class="img-fluid" alt="image">
                 <div class="score"><span>7.5</span>Good</div>
                 <div class="short_info hotel">
@@ -303,7 +305,7 @@
           <div class="hotel_container">
             <div class="ribbon_3"><span>Top rated</span></div>
             <div class="img_container">
-              <a href="single_hotel.html">
+              <a href="<?php echo base_url(); ?>hotel/detail/abc">
                 <img src="<?php echo base_url(); ?>assets/default/img/hotel_5.jpg" width="800" height="533" class="img-fluid" alt="image">
                 <div class="score"><span>8.0</span>Good</div>
                 <div class="short_info hotel">
@@ -331,7 +333,7 @@
           <div class="hotel_container">
             <div class="ribbon_3"><span>Top rated</span></div>
             <div class="img_container">
-              <a href="single_hotel.html">
+              <a href="<?php echo base_url(); ?>hotel/detail/abc">
                 <img src="<?php echo base_url(); ?>assets/default/img/hotel_6.jpg" width="800" height="533" class="img-fluid" alt="image">
                 <div class="score"><span>8.5</span>Superb</div>
                 <div class="short_info hotel">
@@ -359,7 +361,7 @@
       <!-- End row -->
       
       <p class="text-center nopadding">
-        <a href="all_hotels_list.html" class="btn_1 medium"><i class="icon-eye-7"></i>View all hotels (70) </a>
+        <a href="hotel" class="btn_1 medium"><i class="icon-eye-7"></i>View all hotels (70) </a>
       </p>
       
     </div>
@@ -376,49 +378,49 @@
         <div class="row add_bottom_45">
           <div class="col-lg-4 other_tours">
             <ul>
-              <li><a href="#"><i class="icon_set_1_icon-3"></i>Tour Eiffel<span class="other_tours_price">$42</span></a>
+              <li><a href="tour/detail/abc"><i class="icon_set_1_icon-3"></i>Tour Eiffel<span class="other_tours_price">$42</span></a>
               </li>
-              <li><a href="#"><i class="icon_set_1_icon-30"></i>Shopping tour<span class="other_tours_price">$35</span></a>
+              <li><a href="tour/detail/abc"><i class="icon_set_1_icon-30"></i>Shopping tour<span class="other_tours_price">$35</span></a>
               </li>
-              <li><a href="#"><i class="icon_set_1_icon-44"></i>Versailles tour<span class="other_tours_price">$20</span></a>
+              <li><a href="tour/detail/abc"><i class="icon_set_1_icon-44"></i>Versailles tour<span class="other_tours_price">$20</span></a>
               </li>
-              <li><a href="#"><i class="icon_set_1_icon-3"></i>Montparnasse skyline<span class="other_tours_price">$26</span></a>
+              <li><a href="tour/detail/abc"><i class="icon_set_1_icon-3"></i>Montparnasse skyline<span class="other_tours_price">$26</span></a>
               </li>
-              <li><a href="#"><i class="icon_set_1_icon-44"></i>Pompidue<span class="other_tours_price">$26</span></a>
+              <li><a href="tour/detail/abc"><i class="icon_set_1_icon-44"></i>Pompidue<span class="other_tours_price">$26</span></a>
               </li>
-              <li><a href="#"><i class="icon_set_1_icon-3"></i>Senna River tour<span class="other_tours_price">$32</span></a>
-              </li>
-            </ul>
-          </div>
-          <div class="col-lg-4 other_tours">
-            <ul>
-              <li><a href="#"><i class="icon_set_1_icon-1"></i>Notredame<span class="other_tours_price">$48</span></a>
-              </li>
-              <li><a href="#"><i class="icon_set_1_icon-4"></i>Lafaiette<span class="other_tours_price">$55</span></a>
-              </li>
-              <li><a href="#"><i class="icon_set_1_icon-30"></i>Trocadero<span class="other_tours_price">$76</span></a>
-              </li>
-              <li><a href="#"><i class="icon_set_1_icon-3"></i>Open Bus tour<span class="other_tours_price">$55</span></a>
-              </li>
-              <li><a href="#"><i class="icon_set_1_icon-30"></i>Louvre museum<span class="other_tours_price">$24</span></a>
-              </li>
-              <li><a href="#"><i class="icon_set_1_icon-3"></i>Madlene Cathedral<span class="other_tours_price">$24</span></a>
+              <li><a href="tour/detail/abc"><i class="icon_set_1_icon-3"></i>Senna River tour<span class="other_tours_price">$32</span></a>
               </li>
             </ul>
           </div>
           <div class="col-lg-4 other_tours">
             <ul>
-              <li><a href="#"><i class="icon_set_1_icon-37"></i>Montparnasse<span class="other_tours_price">$36</span></a>
+              <li><a href="tour/detail/abc"><i class="icon_set_1_icon-1"></i>Notredame<span class="other_tours_price">$48</span></a>
               </li>
-              <li><a href="#"><i class="icon_set_1_icon-1"></i>D'Orsey museum<span class="other_tours_price">$28</span></a>
+              <li><a href="tour/detail/abc"><i class="icon_set_1_icon-4"></i>Lafaiette<span class="other_tours_price">$55</span></a>
               </li>
-              <li><a href="#"><i class="icon_set_1_icon-50"></i>Gioconda Louvre musuem<span class="other_tours_price">$44</span></a>
+              <li><a href="tour/detail/abc"><i class="icon_set_1_icon-30"></i>Trocadero<span class="other_tours_price">$76</span></a>
               </li>
-              <li><a href="#"><i class="icon_set_1_icon-44"></i>Tour Eiffel<span class="other_tours_price">$56</span></a>
+              <li><a href="tour/detail/abc"><i class="icon_set_1_icon-3"></i>Open Bus tour<span class="other_tours_price">$55</span></a>
               </li>
-              <li><a href="#"><i class="icon_set_1_icon-50"></i>Ladefanse<span class="other_tours_price">$16</span></a>
+              <li><a href="tour/detail/abc"><i class="icon_set_1_icon-30"></i>Louvre museum<span class="other_tours_price">$24</span></a>
               </li>
-              <li><a href="#"><i class="icon_set_1_icon-44"></i>Notredame<span class="other_tours_price">$26</span></a>
+              <li><a href="tour/detail/abc"><i class="icon_set_1_icon-3"></i>Madlene Cathedral<span class="other_tours_price">$24</span></a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg-4 other_tours">
+            <ul>
+              <li><a href="tour/detail/abc"><i class="icon_set_1_icon-37"></i>Montparnasse<span class="other_tours_price">$36</span></a>
+              </li>
+              <li><a href="tour/detail/abc"><i class="icon_set_1_icon-1"></i>D'Orsey museum<span class="other_tours_price">$28</span></a>
+              </li>
+              <li><a href="tour/detail/abc"><i class="icon_set_1_icon-50"></i>Gioconda Louvre musuem<span class="other_tours_price">$44</span></a>
+              </li>
+              <li><a href="tour/detail/abc"><i class="icon_set_1_icon-44"></i>Tour Eiffel<span class="other_tours_price">$56</span></a>
+              </li>
+              <li><a href="tour/detail/abc"><i class="icon_set_1_icon-50"></i>Ladefanse<span class="other_tours_price">$16</span></a>
+              </li>
+              <li><a href="tour/detail/abc"><i class="icon_set_1_icon-44"></i>Notredame<span class="other_tours_price">$26</span></a>
               </li>
             </ul>
           </div>
@@ -430,7 +432,7 @@
           <p>
             Lorem ipsum dolor sit amet, vix erat audiam ei. Cum doctus civibus efficiantur in.
           </p>
-          <a href="single_tour.html" class="btn_1 white">Read more</a>
+          <a href="<?php echo base_url(); ?>tour/detail/abc" class="btn_1 white">Read more</a>
         </div>
         
         <div class="row">
@@ -509,7 +511,7 @@
             <p>
               Lorem ipsum dolor sit amet, vix erat audiam ei. Cum doctus civibus efficiantur in. Nec id tempor imperdiet deterruisset.
             </p>
-            <a href="about.html" class="btn_1 outline">Read more</a>
+            <a href="gioi-thieu" class="btn_1 outline">Read more</a>
           </div>
         </div>
 
@@ -520,7 +522,7 @@
             <p>
               Lorem ipsum dolor sit amet, vix erat audiam ei. Cum doctus civibus efficiantur in. Nec id tempor imperdiet deterruisset.
             </p>
-            <a href="about.html" class="btn_1 outline">Read more</a>
+            <a href="gioi-thieu" class="btn_1 outline">Read more</a>
           </div>
         </div>
 
@@ -531,7 +533,7 @@
             <p>
               Lorem ipsum dolor sit amet, vix erat audiam ei. Cum doctus civibus efficiantur in. Nec id tempor imperdiet deterruisset.
             </p>
-            <a href="about.html" class="btn_1 outline">Read more</a>
+            <a href="gioi-thieu" class="btn_1 outline">Read more</a>
           </div>
         </div>
 
@@ -554,10 +556,11 @@
             <li><span>2</span>Purchase tickets and options</li>
             <li><span>3</span>Pick them directly from your office</li>
           </ul>
-          <a href="all_tour_list.html" class="btn_1">Start now</a>
+          <a href="tour" class="btn_1">Start now</a>
         </div>
       </div>
       <!-- End row -->
 
     </div>
     <!-- End container -->
+</main>

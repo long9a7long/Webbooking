@@ -58,35 +58,29 @@
   <!-- Header================================================== -->
   <?php $this->load->view("default/header"); ?>
   <!-- End Header -->
-  
-  <main>
+ 
+  <?php 
+  if(isset($after_header))
+    $this->load->view($after_header); 
+  ?>
+  <!-- END REVOLUTION SLIDER -->
 
-    <?php 
-    if(isset($after_header))
-      $this->load->view($after_header); 
-    ?>
-    <!-- END REVOLUTION SLIDER -->
+  <?php 
+  if(isset($temp))
+    $this->load->view($temp); 
+  ?>
 
-    <?php 
-    if(isset($temp))
-      $this->load->view($temp); 
-    ?>
-
-  </main>
   <!-- End main -->
   <?php $this->load->view("default/footer"); ?>
   <!-- End footer -->
 
   <div id="toTop"></div><!-- Back to top button -->
-  
-  <!-- Search Menu -->
-  
-  <!-- End Search Menu -->
-  
-  <!-- Sign In Popup -->
-  
-  <!-- /Sign In Popup -->
 
+  <?php 
+  if(isset($after_footer)){
+    $this->load->view($after_footer);
+  }
+  ?>
   <!-- Common scripts -->
   <script src="<?php echo base_url(); ?>assets/default/js/jquery-2.2.4.min.js"></script>
   <script src="<?php echo base_url(); ?>assets/default/js/common_scripts_min.js"></script>

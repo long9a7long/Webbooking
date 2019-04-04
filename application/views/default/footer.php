@@ -9,10 +9,8 @@
                 <div class="col-md-3">
                     <h3>About</h3>
                     <ul>
-                        <li><a href="#">About us</a></li>
-                        <li><a href="#">FAQ</a></li>
+                        <li><a href="gioi-thieu">About us</a></li>
                         <li><a href="#">Login</a></li>
-                        <li><a href="#">Register</a></li>
                          <li><a href="#">Terms and condition</a></li>
                     </ul>
                 </div>

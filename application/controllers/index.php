@@ -11,7 +11,7 @@ class Index extends CI_Controller {
 
 	public function index()
 	{
-        $this -> data['after_header'] = "default/slide"; 
+        //$this -> data['after_header'] = "default/slide"; 
         $this -> data['custom_css'] = array(
         "assets/default/rev-slider-files/fonts/font-awesome/css/font-awesome.css",
         "assets/default/rev-slider-files/css/settings.css"

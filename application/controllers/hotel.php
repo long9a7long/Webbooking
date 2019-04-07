@@ -12,10 +12,24 @@ class Hotel extends CI_Controller {
 	{
 
         $this -> data['title'] = "Booking Hotel";  
+
+        //lấy dữ liệu list
+        $this->load->model('hotels_model');
+        $this -> data['list_hotel']=$this->hotels_model->getList();
+
+        $view_style=1;
+        $view=$this->input->get('view');
+        if($view !==NULL){
+            $view_style=$this->input->get('view');
+        }
+        if($view_style==1)
+            $this -> data['temp'] = "default/hotel/hotel";
+        else{
+            $this -> data['temp'] = "default/hotel/hotel-grid";
+        }
         $this -> data['after_header'] = "default/hotel/slide"; 
-        $this -> data['temp'] = "default/hotel/hotel";
         $this -> data['custom_js'] = array(
-            
+            "assets/default/js/lazysizes.min.js",
             "assets/default/js/map_hotels.js","assets/default/js/functions.js");
             $this -> data['custom_js_external'] = array(
                 "http://maps.googleapis.com/maps/api/js");
@@ -30,12 +44,11 @@ class Hotel extends CI_Controller {
         $this -> data['custom_js_external'] = array(
             "https://maps.googleapis.com/maps/api/js");
         $this -> data['custom_js'] = array(
-            
+            "assets/default/js/switcher.js",
             "assets/default/js/jquery.sliderPro.min.js",
             "assets/default/js/map.js",
             "assets/default/js/infobox.js",
-            "assets/default/assets/validate.js",
-            "assets/default/js/hotel-detail.js");
+            "assets/default/assets/validate.js");
         
         $this->load->view("default/template",$this ->data);
     }

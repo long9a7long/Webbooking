@@ -38,10 +38,10 @@
 						<div class="sp-slides">
 
 							<div class="sp-slide">
-								<img alt="Image" class="sp-image" src="<?php echo base_url(); ?>assets/default/css/images/blank.gif" data-src="<?php echo base_url(); ?>assets/default/img/slider_single_tour/1_medium.jpg" data-small="<?php echo base_url(); ?>assets/default/img/slider_single_tour/1_small.jpg" data-medium="<?php echo base_url(); ?>assets/default/img/slider_single_tour/1_medium.jpg" data-large="<?php echo base_url(); ?>assets/default/img/slider_single_tour/1_large.jpg" data-retina="<?php echo base_url(); ?>assets/default/img/slider_single_tour/1_large.jpg">
+								<img alt="Image" class="sp-image lazyload" src="<?php echo base_url(); ?>assets/default/css/images/blank.gif" data-src="<?php echo base_url(); ?>assets/default/img/slider_single_tour/1_medium.jpg" data-small="<?php echo base_url(); ?>assets/default/img/slider_single_tour/1_small.jpg" data-medium="<?php echo base_url(); ?>assets/default/img/slider_single_tour/1_medium.jpg" data-large="<?php echo base_url(); ?>assets/default/img/slider_single_tour/1_large.jpg" data-retina="<?php echo base_url(); ?>assets/default/img/slider_single_tour/1_large.jpg">
 							</div>
 							<div class="sp-slide">
-								<img alt="Image" class="sp-image" src="<?php echo base_url(); ?>assets/default/css/images/blank.gif" data-src="<?php echo base_url(); ?>assets/default/img/slider_single_tour/2_medium.jpg" data-small="<?php echo base_url(); ?>assets/default/img/slider_single_tour/2_small.jpg" data-medium="<?php echo base_url(); ?>assets/default/img/slider_single_tour/2_medium.jpg" data-large="<?php echo base_url(); ?>assets/default/img/slider_single_tour/2_large.jpg" data-retina="<?php echo base_url(); ?>assets/default/img/slider_single_tour/2_large.jpg">
+								<img alt="Image" class="sp-image lazyload" src="<?php echo base_url(); ?>assets/default/css/images/blank.gif" data-src="<?php echo base_url(); ?>assets/default/img/slider_single_tour/2_medium.jpg" data-small="<?php echo base_url(); ?>assets/default/img/slider_single_tour/2_small.jpg" data-medium="<?php echo base_url(); ?>assets/default/img/slider_single_tour/2_medium.jpg" data-large="<?php echo base_url(); ?>assets/default/img/slider_single_tour/2_large.jpg" data-retina="<?php echo base_url(); ?>assets/default/img/slider_single_tour/2_large.jpg">
 								<h3 class="sp-layer sp-black sp-padding" data-horizontal="40" data-vertical="40" data-show-transition="left">
                         Lorem ipsum dolor sit amet </h3>
 								<p class="sp-layer sp-white sp-padding" data-horizontal="40" data-vertical="100" data-show-transition="left" data-show-delay="200">
@@ -53,7 +53,7 @@
 							</div>
 
 							<div class="sp-slide">
-								<img alt="Image" class="sp-image" src="<?php echo base_url(); ?>assets/default/css/images/blank.gif" data-src="<?php echo base_url(); ?>assets/default/img/slider_single_tour/3_medium.jpg" data-small="<?php echo base_url(); ?>assets/default/img/slider_single_tour/3_small.jpg" data-medium="<?php echo base_url(); ?>assets/default/img/slider_single_tour/3_medium.jpg" data-large="<?php echo base_url(); ?>assets/default/img/slider_single_tour/3_large.jpg" data-retina="<?php echo base_url(); ?>assets/default/img/slider_single_tour/3_large.jpg">
+								<img alt="Image" class="sp-image lazyload" src="<?php echo base_url(); ?>assets/default/css/images/blank.gif" data-src="<?php echo base_url(); ?>assets/default/img/slider_single_tour/3_medium.jpg" data-small="<?php echo base_url(); ?>assets/default/img/slider_single_tour/3_small.jpg" data-medium="<?php echo base_url(); ?>assets/default/img/slider_single_tour/3_medium.jpg" data-large="<?php echo base_url(); ?>assets/default/img/slider_single_tour/3_large.jpg" data-retina="<?php echo base_url(); ?>assets/default/img/slider_single_tour/3_large.jpg">
 								<p class="sp-layer sp-white sp-padding" data-position="centerCenter" data-vertical="-50" data-show-transition="right" data-show-delay="500">
 									Lorem ipsum dolor sit amet
 								</p>
@@ -63,35 +63,35 @@
 							</div>
 
 							<div class="sp-slide">
-								<img alt="Image" class="sp-image" src="<?php echo base_url(); ?>assets/default/css/images/blank.gif" data-src="<?php echo base_url(); ?>assets/default/img/slider_single_tour/4_medium.jpg" data-small="<?php echo base_url(); ?>assets/default/img/slider_single_tour/4_small.jpg" data-medium="<?php echo base_url(); ?>assets/default/img/slider_single_tour/4_medium.jpg" data-large="<?php echo base_url(); ?>assets/default/img/slider_single_tour/4_large.jpg" data-retina="<?php echo base_url(); ?>assets/default/img/slider_single_tour/4_large.jpg">
+								<img alt="Image" class="sp-image lazyload" src="<?php echo base_url(); ?>assets/default/css/images/blank.gif" data-src="<?php echo base_url(); ?>assets/default/img/slider_single_tour/4_medium.jpg" data-small="<?php echo base_url(); ?>assets/default/img/slider_single_tour/4_small.jpg" data-medium="<?php echo base_url(); ?>assets/default/img/slider_single_tour/4_medium.jpg" data-large="<?php echo base_url(); ?>assets/default/img/slider_single_tour/4_large.jpg" data-retina="<?php echo base_url(); ?>assets/default/img/slider_single_tour/4_large.jpg">
 								<p class="sp-layer sp-black sp-padding" data-position="bottomLeft" data-vertical="0" data-width="100%" data-show-transition="up">
 									Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 								</p>
 							</div>
 
 							<div class="sp-slide">
-								<img alt="Image" class="sp-image" src="<?php echo base_url(); ?>assets/default/css/images/blank.gif" data-src="<?php echo base_url(); ?>assets/default/img/slider_single_tour/5_medium.jpg" data-small="<?php echo base_url(); ?>assets/default/img/slider_single_tour/5_small.jpg" data-medium="<?php echo base_url(); ?>assets/default/img/slider_single_tour/5_medium.jpg" data-large="<?php echo base_url(); ?>assets/default/img/slider_single_tour/5_large.jpg" data-retina="<?php echo base_url(); ?>assets/default/img/slider_single_tour/5_large.jpg">
+								<img alt="Image" class="sp-image lazyload" src="<?php echo base_url(); ?>assets/default/css/images/blank.gif" data-src="<?php echo base_url(); ?>assets/default/img/slider_single_tour/5_medium.jpg" data-small="<?php echo base_url(); ?>assets/default/img/slider_single_tour/5_small.jpg" data-medium="<?php echo base_url(); ?>assets/default/img/slider_single_tour/5_medium.jpg" data-large="<?php echo base_url(); ?>assets/default/img/slider_single_tour/5_large.jpg" data-retina="<?php echo base_url(); ?>assets/default/img/slider_single_tour/5_large.jpg">
 								<p class="sp-layer sp-white sp-padding" data-vertical="5%" data-horizontal="5%" data-width="90%" data-show-transition="down" data-show-delay="400">
 									Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 								</p>
 							</div>
 
 							<div class="sp-slide">
-								<img alt="Image" class="sp-image" src="<?php echo base_url(); ?>assets/default/css/images/blank.gif" data-src="<?php echo base_url(); ?>assets/default/img/slider_single_tour/6_medium.jpg" data-small="<?php echo base_url(); ?>assets/default/img/slider_single_tour/6_small.jpg" data-medium="<?php echo base_url(); ?>assets/default/img/slider_single_tour/6_medium.jpg" data-large="<?php echo base_url(); ?>assets/default/img/slider_single_tour/6_large.jpg" data-retina="<?php echo base_url(); ?>assets/default/img/slider_single_tour/6_large.jpg">
+								<img alt="Image" class="sp-image lazyload" src="<?php echo base_url(); ?>assets/default/css/images/blank.gif" data-src="<?php echo base_url(); ?>assets/default/img/slider_single_tour/6_medium.jpg" data-small="<?php echo base_url(); ?>assets/default/img/slider_single_tour/6_small.jpg" data-medium="<?php echo base_url(); ?>assets/default/img/slider_single_tour/6_medium.jpg" data-large="<?php echo base_url(); ?>assets/default/img/slider_single_tour/6_large.jpg" data-retina="<?php echo base_url(); ?>assets/default/img/slider_single_tour/6_large.jpg">
 								<p class="sp-layer sp-white sp-padding" data-horizontal="10" data-vertical="10" data-width="300">
 									Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 								</p>
 							</div>
 
 							<div class="sp-slide">
-								<img alt="Image" class="sp-image" src="<?php echo base_url(); ?>assets/default/css/images/blank.gif" data-src="<?php echo base_url(); ?>assets/default/img/slider_single_tour/7_medium.jpg" data-small="<?php echo base_url(); ?>assets/default/img/slider_single_tour/7_small.jpg" data-medium="<?php echo base_url(); ?>assets/default/img/slider_single_tour/7_medium.jpg" data-large="<?php echo base_url(); ?>assets/default/img/slider_single_tour/7_large.jpg" data-retina="<?php echo base_url(); ?>assets/default/img/slider_single_tour/7_large.jpg">
+								<img alt="Image" class="sp-image lazyload" src="<?php echo base_url(); ?>assets/default/css/images/blank.gif" data-src="<?php echo base_url(); ?>assets/default/img/slider_single_tour/7_medium.jpg" data-small="<?php echo base_url(); ?>assets/default/img/slider_single_tour/7_small.jpg" data-medium="<?php echo base_url(); ?>assets/default/img/slider_single_tour/7_medium.jpg" data-large="<?php echo base_url(); ?>assets/default/img/slider_single_tour/7_large.jpg" data-retina="<?php echo base_url(); ?>assets/default/img/slider_single_tour/7_large.jpg">
 								<p class="sp-layer sp-black sp-padding" data-position="bottomLeft" data-horizontal="5%" data-vertical="5%" data-width="90%" data-show-transition="up" data-show-delay="400">
 									Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 								</p>
 							</div>
 
 							<div class="sp-slide">
-								<img alt="Image" class="sp-image" src="<?php echo base_url(); ?>assets/default/css/images/blank.gif" data-src="<?php echo base_url(); ?>assets/default/img/slider_single_tour/8_medium.jpg" data-small="<?php echo base_url(); ?>assets/default/img/slider_single_tour/8_small.jpg" data-medium="<?php echo base_url(); ?>assets/default/img/slider_single_tour/8_medium.jpg" data-large="<?php echo base_url(); ?>assets/default/img/slider_single_tour/8_large.jpg" data-retina="<?php echo base_url(); ?>assets/default/img/slider_single_tour/8_large.jpg">
+								<img alt="Image" class="sp-image lazyload" src="<?php echo base_url(); ?>assets/default/css/images/blank.gif" data-src="<?php echo base_url(); ?>assets/default/img/slider_single_tour/8_medium.jpg" data-small="<?php echo base_url(); ?>assets/default/img/slider_single_tour/8_small.jpg" data-medium="<?php echo base_url(); ?>assets/default/img/slider_single_tour/8_medium.jpg" data-large="<?php echo base_url(); ?>assets/default/img/slider_single_tour/8_large.jpg" data-retina="<?php echo base_url(); ?>assets/default/img/slider_single_tour/8_large.jpg">
 								<p class="sp-layer sp-black sp-padding" data-horizontal="50" data-vertical="50" data-show-transition="down" data-show-delay="500">
 									Lorem ipsum dolor sit amet
 								</p>
@@ -101,19 +101,19 @@
 							</div>
 
 							<div class="sp-slide">
-								<img alt="Image" class="sp-image" src="<?php echo base_url(); ?>assets/default/css/images/blank.gif" data-src="<?php echo base_url(); ?>assets/default/img/slider_single_tour/9_medium.jpg" data-small="<?php echo base_url(); ?>assets/default/img/slider_single_tour/9_small.jpg" data-medium="<?php echo base_url(); ?>assets/default/img/slider_single_tour/9_medium.jpg" data-large="<?php echo base_url(); ?>assets/default/img/slider_single_tour/9_large.jpg" data-retina="<?php echo base_url(); ?>assets/default/img/slider_single_tour/9_large.jpg">
+								<img alt="Image" class="sp-image lazyload" src="<?php echo base_url(); ?>assets/default/css/images/blank.gif" data-src="<?php echo base_url(); ?>assets/default/img/slider_single_tour/9_medium.jpg" data-small="<?php echo base_url(); ?>assets/default/img/slider_single_tour/9_small.jpg" data-medium="<?php echo base_url(); ?>assets/default/img/slider_single_tour/9_medium.jpg" data-large="<?php echo base_url(); ?>assets/default/img/slider_single_tour/9_large.jpg" data-retina="<?php echo base_url(); ?>assets/default/img/slider_single_tour/9_large.jpg">
 							</div>
 						</div>
 						<div class="sp-thumbnails">
-							<img alt="Image" class="sp-thumbnail" src="<?php echo base_url(); ?>assets/default/img/slider_single_tour/1_medium.jpg">
-							<img alt="Image" class="sp-thumbnail" src="<?php echo base_url(); ?>assets/default/img/slider_single_tour/2_medium.jpg">
-							<img alt="Image" class="sp-thumbnail" src="<?php echo base_url(); ?>assets/default/img/slider_single_tour/3_medium.jpg">
-							<img alt="Image" class="sp-thumbnail" src="<?php echo base_url(); ?>assets/default/img/slider_single_tour/4_medium.jpg">
-							<img alt="Image" class="sp-thumbnail" src="<?php echo base_url(); ?>assets/default/img/slider_single_tour/5_medium.jpg">
-							<img alt="Image" class="sp-thumbnail" src="<?php echo base_url(); ?>assets/default/img/slider_single_tour/6_medium.jpg">
-							<img alt="Image" class="sp-thumbnail" src="<?php echo base_url(); ?>assets/default/img/slider_single_tour/7_medium.jpg">
-							<img alt="Image" class="sp-thumbnail" src="<?php echo base_url(); ?>assets/default/img/slider_single_tour/8_medium.jpg">
-							<img alt="Image" class="sp-thumbnail" src="<?php echo base_url(); ?>assets/default/img/slider_single_tour/9_medium.jpg">
+							<img alt="Image" class="sp-thumbnail lazyload" src="<?php echo base_url(); ?>assets/default/img/slider_single_tour/1_medium.jpg">
+							<img alt="Image" class="sp-thumbnail lazyload" src="<?php echo base_url(); ?>assets/default/img/slider_single_tour/2_medium.jpg">
+							<img alt="Image" class="sp-thumbnail lazyload" src="<?php echo base_url(); ?>assets/default/img/slider_single_tour/3_medium.jpg">
+							<img alt="Image" class="sp-thumbnail lazyload" src="<?php echo base_url(); ?>assets/default/img/slider_single_tour/4_medium.jpg">
+							<img alt="Image" class="sp-thumbnail lazyload" src="<?php echo base_url(); ?>assets/default/img/slider_single_tour/5_medium.jpg">
+							<img alt="Image" class="sp-thumbnail lazyload" src="<?php echo base_url(); ?>assets/default/img/slider_single_tour/6_medium.jpg">
+							<img alt="Image" class="sp-thumbnail lazyload" src="<?php echo base_url(); ?>assets/default/img/slider_single_tour/7_medium.jpg">
+							<img alt="Image" class="sp-thumbnail lazyload" src="<?php echo base_url(); ?>assets/default/img/slider_single_tour/8_medium.jpg">
+							<img alt="Image" class="sp-thumbnail lazyload" src="<?php echo base_url(); ?>assets/default/img/slider_single_tour/9_medium.jpg">
 						</div>
 					</div>
 

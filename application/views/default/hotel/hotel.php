@@ -203,22 +203,25 @@
 								</div>
 							</div>
 							<div class="col-md-6 col-sm-4 d-none d-sm-block text-right">
-								<a href="#" class="bt_filters"><i class="icon-th"></i></a> <a href="all_hotels_list.html" class="bt_filters"><i class=" icon-list"></i></a>
+								<a href="<?php echo base_url(); ?>hotel/?view=2" class="bt_filters"><i class="icon-th"></i></a> <a href="<?php echo base_url(); ?>hotel/?view=1" class="bt_filters"><i class=" icon-list"></i></a>
 							</div>
 						</div>
 					</div>
 					<!--End tools -->
+				<?php
+					foreach ($list_hotel as $item){
 
+				?>
 					<div class="strip_all_tour_list wow fadeIn" data-wow-delay="0.1s">
 						<div class="row">
 							<div class="col-lg-4 col-md-4">
-								<div class="ribbon_3 popular"><span>Popular</span>
+								<div class="ribbon_3 popular"><span><?php echo $item['hotel_name']; ?></span>
 								</div>
 								<div class="wishlist">
 									<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 								</div>
 								<div class="img_list">
-									<a href="<?php echo base_url(); ?>hotel/detail/abc"><img src="<?php echo base_url(); ?>assets/default/img/hotel_1.jpg" alt="Image">
+									<a href="<?php echo base_url(); ?>hotel/detail/abc"><img data-src="<?php echo $item['hotel_thumnail'];?>" alt="Image" class="lazyload">
 										<div class="short_info"></div>
 									</a>
 								</div>
@@ -252,7 +255,7 @@
 							</div>
 							<div class="col-lg-2 col-md-2">
 								<div class="price_list">
-									<div><sup>$</sup>89*<span class="normal_price_list">$99</span><small>*From/Per night</small>
+									<div><sup>$</sup>89*<span class="normal_price_list"><?php echo $item['hotel_price']; ?></span><small>*From/Per night</small>
 										<p><a href="<?php echo base_url(); ?>hotel/detail/abc" class="btn_1">Details</a>
 										</p>
 									</div>
@@ -261,220 +264,10 @@
 						</div>
 					</div>
 					<!--End strip -->
+				<?php
+					}
+				?>
 
-					<div class="strip_all_tour_list wow fadeIn" data-wow-delay="0.1s">
-						<div class="row">
-							<div class="col-lg-4 col-md-4">
-								<div class="ribbon_3 popular"><span>Popular</span>
-								</div>
-								<div class="wishlist">
-									<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
-								</div>
-								<div class="img_list">
-									<a href="<?php echo base_url(); ?>hotel/detail/abc"><img src="<?php echo base_url(); ?>assets/default/img/hotel_2.jpg" alt="Image">
-										<div class="short_info"></div>
-									</a>
-								</div>
-							</div>
-							<div class="col-lg-6 col-md-6">
-								<div class="tour_list_desc">
-									<div class="score">Superb<span>9.0</span>
-									</div>
-									<div class="rating"><i class="icon-star voted"></i><i class="icon-star  voted"></i><i class="icon-star  voted"></i><i class="icon-star  voted"></i><i class="icon-star-empty"></i>
-									</div>
-									<h3><strong>Mariott</strong> Hotel</h3>
-									<p>Lorem ipsum dolor sit amet, quem convenire interesset ut vix, ad dicat sanctus detracto vis. Eos modus dolorum...</p>
-									<ul class="add_info">
-										<li>
-											<a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Free Wifi"><i class="icon_set_1_icon-86"></i></a>
-										</li>
-										<li>
-											<a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Plasma TV with cable channels"><i class="icon_set_2_icon-116"></i></a>
-										</li>
-										<li>
-											<a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Swimming pool"><i class="icon_set_2_icon-110"></i></a>
-										</li>
-										<li>
-											<a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Fitness Center"><i class="icon_set_2_icon-117"></i></a>
-										</li>
-										<li>
-											<a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Restaurant"><i class="icon_set_1_icon-58"></i></a>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<div class="col-lg-2 col-md-2">
-								<div class="price_list">
-									<div><sup>$</sup>39*<span class="normal_price_list">$99</span><small>*From/Per night</small>
-										<p><a href="<?php echo base_url(); ?>hotel/detail/abc" class="btn_1">Details</a>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!--End strip -->
-
-					<div class="strip_all_tour_list wow fadeIn" data-wow-delay="0.1s">
-						<div class="row">
-							<div class="col-lg-4 col-md-4">
-								<div class="ribbon_3"><span>Top rated</span>
-								</div>
-								<div class="wishlist">
-									<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
-								</div>
-								<div class="img_list">
-									<a href="<?php echo base_url(); ?>hotel/detail/abc"><img src="<?php echo base_url(); ?>assets/default/img/hotel_3.jpg" alt="Image">
-										<div class="short_info"></div>
-									</a>
-								</div>
-							</div>
-							<div class="col-lg-6 col-md-6">
-								<div class="tour_list_desc">
-									<div class="score">Superb<span>9.0</span>
-									</div>
-									<div class="rating"><i class="icon-star voted"></i><i class="icon-star  voted"></i><i class="icon-star  voted"></i><i class="icon-star  voted"></i><i class="icon-star  voted"></i>
-									</div>
-									<h3><strong>Lumiere</strong> Hotel</h3>
-									<p>Lorem ipsum dolor sit amet, quem convenire interesset ut vix, ad dicat sanctus detracto vis. Eos modus dolorum...</p>
-									<ul class="add_info">
-										<li>
-											<a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Free Wifi"><i class="icon_set_1_icon-86"></i></a>
-										</li>
-										<li>
-											<a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Plasma TV with cable channels"><i class="icon_set_2_icon-116"></i></a>
-										</li>
-										<li>
-											<a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Swimming pool"><i class="icon_set_2_icon-110"></i></a>
-										</li>
-										<li>
-											<a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Fitness Center"><i class="icon_set_2_icon-117"></i></a>
-										</li>
-										<li>
-											<a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Restaurant"><i class="icon_set_1_icon-58"></i></a>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<div class="col-lg-2 col-md-2">
-								<div class="price_list">
-									<div><sup>$</sup>129*<span class="normal_price_list">$99</span><small>*From/Per night</small>
-										<p><a href="<?php echo base_url(); ?>hotel/detail/abc" class="btn_1">Details</a>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!--End strip -->
-
-					<div class="strip_all_tour_list wow fadeIn" data-wow-delay="0.1s">
-						<div class="row">
-							<div class="col-lg-4 col-md-4">
-								<div class="ribbon_3"><span>Top rated</span>
-								</div>
-								<div class="wishlist">
-									<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
-								</div>
-								<div class="img_list">
-									<a href="<?php echo base_url(); ?>hotel/detail/abc"><img src="<?php echo base_url(); ?>assets/default/img/hotel_4.jpg" alt="Image">
-										<div class="short_info"></div>
-									</a>
-								</div>
-							</div>
-							<div class="clearfix visible-xs-block"></div>
-							<div class="col-lg-6 col-md-6">
-								<div class="tour_list_desc">
-									<div class="score">Good<span>7.5</span>
-									</div>
-									<div class="rating"><i class="icon-star voted"></i><i class="icon-star  voted"></i><i class="icon-star  voted"></i><i class="icon-star-empty"></i><i class="icon-star-empty"></i>
-									</div>
-									<h3><strong>Concorde</strong> Hotel</h3>
-									<p>Lorem ipsum dolor sit amet, quem convenire interesset ut vix, ad dicat sanctus detracto vis. Eos modus dolorum...</p>
-									<ul class="add_info">
-										<li>
-											<a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Free Wifi"><i class="icon_set_1_icon-86"></i></a>
-										</li>
-										<li>
-											<a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Plasma TV with cable channels"><i class="icon_set_2_icon-116"></i></a>
-										</li>
-										<li>
-											<a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Swimming pool"><i class="icon_set_2_icon-110"></i></a>
-										</li>
-										<li>
-											<a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Fitness Center"><i class="icon_set_2_icon-117"></i></a>
-										</li>
-										<li>
-											<a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Restaurant"><i class="icon_set_1_icon-58"></i></a>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<div class="col-lg-2 col-md-2">
-								<div class="price_list">
-									<div><sup>$</sup>119*<span class="normal_price_list">$99</span><small>*From/Per night</small>
-										<p><a href="<?php echo base_url(); ?>hotel/detail/abc" class="btn_1">Details</a>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!--End strip -->
-
-					<div class="strip_all_tour_list wow fadeIn" data-wow-delay="0.1s">
-						<div class="row">
-							<div class="col-lg-4 col-md-4">
-								<div class="ribbon_3"><span>Top rated</span>
-								</div>
-								<div class="wishlist">
-									<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
-								</div>
-								<div class="img_list">
-									<a href="<?php echo base_url(); ?>hotel/detail/abc"><img src="<?php echo base_url(); ?>assets/default/img/hotel_5.jpg" alt="Image">
-										<div class="short_info"></div>
-									</a>
-								</div>
-							</div>
-							<div class="clearfix visible-xs-block"></div>
-							<div class="col-lg-6 col-md-6">
-								<div class="tour_list_desc">
-									<div class="score">Very Good<span>8.0</span>
-									</div>
-									<div class="rating"><i class="icon-star voted"></i><i class="icon-star  voted"></i><i class="icon-star  voted"></i><i class="icon-star  voted"></i><i class="icon-star  voted"></i>
-									</div>
-									<h3><strong>Concorde</strong> Hotel</h3>
-									<p>Lorem ipsum dolor sit amet, quem convenire interesset ut vix, ad dicat sanctus detracto vis. Eos modus dolorum...</p>
-									<ul class="add_info">
-										<li>
-											<a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Free Wifi"><i class="icon_set_1_icon-86"></i></a>
-										</li>
-										<li>
-											<a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Plasma TV with cable channels"><i class="icon_set_2_icon-116"></i></a>
-										</li>
-										<li>
-											<a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Swimming pool"><i class="icon_set_2_icon-110"></i></a>
-										</li>
-										<li>
-											<a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Fitness Center"><i class="icon_set_2_icon-117"></i></a>
-										</li>
-										<li>
-											<a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Restaurant"><i class="icon_set_1_icon-58"></i></a>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<div class="col-lg-2 col-md-2">
-								<div class="price_list">
-									<div><sup>$</sup>129*<span class="normal_price_list">$99</span><small>*From/Per night</small>
-										<p><a href="<?php echo base_url(); ?>hotel/detail/abc" class="btn_1">Details</a>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!--End strip -->
 
 					<hr>
 

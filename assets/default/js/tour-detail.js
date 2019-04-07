@@ -1,3 +1,18 @@
+$('input.date-pick').datepicker('setDate', 'today');
+		$('input.time-pick').timepicker({
+			minuteStep: 15,
+			showInpunts: false
+		})
+
+jQuery('#sidebar').theiaStickySidebar({
+			additionalMarginTop: 80
+		});
+
+$('input').iCheck({
+		   checkboxClass: 'icheckbox_square-grey',
+		   radioClass: 'iradio_square-grey'
+		 });
+
 $(document).ready(function ($) {
 			$('#Img_carousel').sliderPro({
 				width: 960,
@@ -15,12 +30,4 @@ $(document).ready(function ($) {
 			});
 		});
 
-$('input.date-pick').datepicker('setDate', 'today');
-		$('input.time-pick').timepicker({
-			minuteStep: 15,
-			showInpunts: false
-		})
 
-jQuery('#sidebar').theiaStickySidebar({
-			additionalMarginTop: 80
-		});

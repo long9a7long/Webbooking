@@ -170,7 +170,7 @@
 								<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 							</div>
 							<div class="img_list">
-								<a href="<?php echo base_url(); ?>tour/detail/abc"><img src="<?php echo base_url(); ?>assets/default/img/tour_box_1.jpg" alt="Image">
+								<a href="<?php echo base_url(); ?>tour/detail/abc"><img data-src="<?php echo base_url(); ?>assets/default/img/tour_box_1.jpg" alt="Image" class="lazyload">
 									<div class="short_info"><i class="icon_set_1_icon-4"></i>Museums </div>
 								</a>
 							</div>
@@ -260,7 +260,7 @@
 								<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 							</div>
 							<div class="img_list">
-								<a href="<?php echo base_url(); ?>tour/detail/abc"><img src="<?php echo base_url(); ?>assets/default/img/tour_box_2.jpg" alt="Image">
+								<a href="<?php echo base_url(); ?>tour/detail/abc"><img data-src="<?php echo base_url(); ?>assets/default/img/tour_box_2.jpg" alt="Image" class="lazyload">
 									<div class="short_info"><i class="icon_set_1_icon-44"></i>Churches</div>
 								</a>
 							</div>
@@ -350,7 +350,7 @@
 								<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 							</div>
 							<div class="img_list">
-								<a href="<?php echo base_url(); ?>tour/detail/abc"><img src="<?php echo base_url(); ?>assets/default/img/tour_box_3.jpg" alt="Image">
+								<a href="<?php echo base_url(); ?>tour/detail/abc"><img data-src="<?php echo base_url(); ?>assets/default/img/tour_box_3.jpg" alt="Image" class="lazyload">
 									<div class="short_info"><i class="icon_set_1_icon-44"></i>Historic Buildings</div>
 								</a>
 							</div>
@@ -440,7 +440,7 @@
 								<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 							</div>
 							<div class="img_list">
-								<a href="<?php echo base_url(); ?>tour/detail/abc"><img src="<?php echo base_url(); ?>assets/default/img/tour_box_4.jpg" alt="Image">
+								<a href="<?php echo base_url(); ?>tour/detail/abc"><img data-src="<?php echo base_url(); ?>assets/default/img/tour_box_4.jpg" alt="Image" class="lazyload">
 									<div class="short_info"><i class="icon_set_1_icon-37"></i>Walking tour</div>
 								</a>
 							</div>
@@ -530,7 +530,7 @@
 								<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 							</div>
 							<div class="img_list">
-								<a href="<?php echo base_url(); ?>tour/detail/abc"><img src="<?php echo base_url(); ?>assets/default/img/tour_box_14.jpg" alt="Image">
+								<a href="<?php echo base_url(); ?>tour/detail/abc"><img data-src="<?php echo base_url(); ?>assets/default/img/tour_box_14.jpg" alt="Image" class="lazyload">
 									<div class="short_info"><i class="icon_set_1_icon-28"></i>Skyline tour</div>
 								</a>
 							</div>
@@ -620,7 +620,7 @@
 								<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 							</div>
 							<div class="img_list">
-								<a href="<?php echo base_url(); ?>tour/detail/abc"><img src="<?php echo base_url(); ?>assets/default/img/tour_box_5.jpg" alt="Image">
+								<a href="<?php echo base_url(); ?>tour/detail/abc"><img data-src="<?php echo base_url(); ?>assets/default/img/tour_box_5.jpg" alt="Image" class="lazyload">
 									<div class="short_info"><i class="icon_set_1_icon-44"></i>Historic Building</div>
 								</a>
 							</div>

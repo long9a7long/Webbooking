@@ -33,6 +33,7 @@ class Tour extends CI_Controller {
             "assets/default/js/cat_nav_mobile.js",
             "assets/default/js/map.js",
             "assets/default/js/infobox.js",
+            "assets/default/js/lazysizes.min.js",
             "assets/default/js/tour.js");
         //import javascript external
         $this -> data['custom_js_external'] = array(
@@ -43,6 +44,7 @@ class Tour extends CI_Controller {
         
     }
 
+    //Single tour page
     public function detail()
     {
         $this -> data['title'] = "Booking Tour";
@@ -65,6 +67,43 @@ class Tour extends CI_Controller {
 
         $this->load->view("default/template",$this ->data);
     }
+
+    //Function cart for booking tour
+    public function cart(){
+        $this -> data['title'] = "Place Your Order";
+        $this -> data['after_header'] = "default/tour/tour-cart-slide"; 
+
+        $this -> data['temp'] = "default/tour/cart";
+
+
+        $this->load->view("default/template",$this ->data);
+    }
+
+    //Function checkout for booking tour
+    public function payment(){
+        $this -> data['title'] = "Place Your Order";
+        $this -> data['after_header'] = "default/tour/tour-payment-slide"; 
+
+        $this -> data['temp'] = "default/tour/payment";
+
+        $this -> data['custom_js'] = array(
+            "assets/default/js/theia-sticky-sidebar.js",
+            "assets/default/js/tour-detail.js");
+
+        $this->load->view("default/template",$this ->data);
+    }
+
+    //Function confirmation for booking tour
+    public function confirmation(){
+        $this -> data['title'] = "Confirmation";
+        $this -> data['after_header'] = "default/tour/tour-confirm-slide"; 
+
+        $this -> data['temp'] = "default/tour/confirm";
+
+        $this->load->view("default/template",$this ->data);
+    }
+
+
 
     public function get_list_tour_from(){
         $this->load->model("tours_model");

@@ -105,9 +105,9 @@ class Tour extends CI_Controller {
 
 
 
-    public function get_list_tour_from(){
+    public function get_list_tour(){
         $this->load->model("tours_model");
-        echo json_encode($this->tours_model->get_list_tour_from());
+        echo json_encode($this->tours_model->getList());
     }
     public function get_list_tour_destination(){
         $this->load->model("tours_model");

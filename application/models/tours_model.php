@@ -7,9 +7,48 @@ class Tours_model extends CI_Model
 		return $result->row();
     }
 
-    public function getList()
+    public function getListHaveFilter($category,$rating,$minprice,$maxprice,$page,$page_size)
+    {
+        //lọc bài viết theo category 
+        if($category!=NULL){
+            $arr_category=explode(',', $category);
+            foreach($arr_category as $item ){
+                $this->db->or_where("$item in (SELECT `list_category_tour`.`category_tour_id` FROM `list_category_tour` WHERE `list_category_tour`.`tour_id`=tours.tour_id)");
+            }
+        }
+        
+        //join cột điểm trung bình review của tour
+        $sql_avg_star="(Select ROUND(AVG(rev_star),0) as avg_rev,tour_id from review_tour GROUP BY review_tour.tour_id) as rev_tbl";
+        $this->db->join($sql_avg_star,'rev_tbl.tour_id=tours.tour_id');
+        //lọc bài viết theo tiêu chí đánh giá
+        if($rating!=NULL){
+            $this->db->where('avg_rev >',$rating);
+        }
+        //lọc bài viết theo giá tour
+        if($minprice!=NULL){
+            $this->db->where('tour_saving_price >=',$minprice);
+            $this->db->or_where('tour_price >=',$minprice);
+        }
+            
+        if($maxprice!=NULL){
+            $this->db->where('tour_saving_price <=',$maxprice);
+            $this->db->or_where('tour_price >=',$maxprice);
+        }
+        
+        $this->db->limit($page_size,($page-1)*$page_size);
+        //join cột tổng số lượng review của tour
+        $sql_num_rev="(Select count(review_tour.tour_id) as num_rev,tour_id from review_tour GROUP BY review_tour.tour_id) as revs_num";
+        $this->db->join($sql_num_rev,'revs_num.tour_id=tours.tour_id');
+        
+        $query=$this->db->get("tours");
+        //trả kết quả về dạng mảng
+        return $query->result_array();
+    }
+
+    public function getList($category,$rating,$minprice,$maxprice,$page,$page_size)
     {
         $query=$this->db->get("tours");
+        //trả kết quả về dạng mảng
         return $query->result_array();
     }
 

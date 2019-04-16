@@ -269,20 +269,20 @@ $('#remember-me').iCheck({
 	radioClass: 'iradio_square-grey'
 });
 $(document).ready(function ($) {
-	$('#Img_carousel').sliderPro({
-		width: 960,
-		height: 500,
-		fade: true,
-		arrows: true,
-		buttons: false,
-		fullScreen: false,
-		smallSize: 500,
-		startSlide: 0,
-		mediumSize: 1000,
-		largeSize: 3000,
-		thumbnailArrows: true,
-		autoplay: false
-	});
+	// $('#Img_carousel').sliderPro({
+	// 	width: 960,
+	// 	height: 500,
+	// 	fade: true,
+	// 	arrows: true,
+	// 	buttons: false,
+	// 	fullScreen: false,
+	// 	smallSize: 500,
+	// 	startSlide: 0,
+	// 	mediumSize: 1000,
+	// 	largeSize: 3000,
+	// 	thumbnailArrows: true,
+	// 	autoplay: false
+	// });
 });
 $('input.date-pick').datepicker('setDate', 'today');
 $('.carousel-thumbs-2').owlCarousel({
@@ -303,3 +303,7 @@ $('.carousel-thumbs-2').owlCarousel({
 		}
 	}
 });
+function getWords(str,numwords) {
+    return str.split(/\s+/).slice(0,numwords).join(" ");
+}
+var base_url = window.location.origin+ '/' +window.location.pathname.split('/')[1]; 

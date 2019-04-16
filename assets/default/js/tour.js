@@ -12,8 +12,6 @@ $(function() {
     	add_query_string_filter('category',id);
     	//lấy danh sách tours theo query string
     	get_list_tours(get_list_query());
-
-    	console.log($('#querystring_filter').val());
     });
 
     //Su kien thay doi gia tri filter gia
@@ -41,6 +39,8 @@ $(function() {
         if(type=='rating'){
         	$('input.filter-rating[data-id='+id+']').iCheck('uncheck');
         }
+
+        remove_query_string_filter(type,id);
     });
 
 
@@ -79,6 +79,7 @@ $(function() {
     	e.preventDefault();
     	let id= $(this).data('id');
         $('span.filter-item').has('a[data-type=rating][data-id='+id+']').remove();
+        remove_query_string_filter('rating', id);
     });
 
 
@@ -133,19 +134,25 @@ function add_filter_items(type,id, content){
 	}
 	
 }
-function get_list_tours(data) {
-    var url = "tour/get_list_tour";
+async function get_list_tours(data) {
+	let result;
+    var url = base_url+"/tour/get_list_tour";
     var success = function(result) {
         var json_data = $.parseJSON(result);
         show_list_tours(json_data);
     };
-    $.get(url, success);
+    try {
+		result = await $.get(url, data, success);
+	}
+	catch (error) {
+        console.error(error);
+    }
 }
 
 function show_list_tours(data) {
     let list = $('#list_tour_list');
     list.empty();
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < data.length; i++) {
         let tr = $('<div class="strip_all_tour_list wow fadeIn" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeIn;"></div>');
         let r=$('<div class="row"></div>');
         let col4=$('<div class="col-lg-4 col-md-4"></div>');
@@ -153,29 +160,37 @@ function show_list_tours(data) {
         let col2=$('<div class="col-lg-2 col-md-2"></div>');
 
 
-        col4.append('<div class="ribbon_3 popular"><span>Popular</span></div>');
+        col4.append('<div class="ribbon_3 popular"><span>'+data[i].tour_label+'</span></div>');
 
         col4.append('<div class="wishlist">'+
         	'<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip">'+
         	'<span class="tooltip-back">Add to wishlist</span>'+
         	+'</span></a></div>');
         col4.append('<div class="img_list">'+
-						'<a href="tour/detail/abc"><img data-src="assets/default/img/tour_box_1.jpg" alt="Image" class="lazyload">'+
-							'<div class="short_info"><i class="icon_set_1_icon-4"></i>Museums </div>'+
+						'<a href="tour/detail/'+data[i].tour_slug+'"><img data-src="'+data[i].tour_thumnail+'" alt="'+data[i].tour_name+'" class="lazyload">'+
 						'</a>'+
 					'</div>');
 
 
-        let tour_list_desc=$('<div class="tour_list_desc"></div>');
-        tour_list_desc.append('<div class="rating">'+
-						'<i class="icon-smile voted"></i>'+
-						'<i class="icon-smile  voted"></i>'+
-						'<i class="icon-smile  voted"></i>'+
-						'<i class="icon-smile  voted"></i>'+
-						'<i class="icon-smile"></i><small>(75)</small>'+
+		let tour_list_desc=$('<div class="tour_list_desc"></div>');
+		let vote="";
+		for(let j=0;j<5;j++){
+			if(data[i].avg_rev>j)
+				vote+='<i class="icon-smile voted"></i>';
+			else
+				vote+='<i class="icon-smile"></i>';
+		}
+        tour_list_desc.append('<div class="rating">'+vote+
+						'<small>('+data[i].num_rev+')</small>'+
 					'</div>');
-        tour_list_desc.append('<h3><strong>Arch Triomphe</strong> tour</h3>');
-        tour_list_desc.append('<p>Lorem ipsum dolor sit amet, quem convenire interesset ut vix, ad dicat sanctus detracto vis. Eos modus dolorum ex, qui adipisci maiestatis inciderint no, eos in elit dicat.....</p>');
+		tour_list_desc.append('<h3>'+data[i].tour_name+'</h3>');
+		let except="";
+		if(data[i].tour_except==null){
+			except=getWords(data[i].tour_description,30)+'...';
+		}else{
+			except=data[i].tour_except;
+		}
+        tour_list_desc.append('<p>'+except+'</p>');
         let add_info=$('<ul class="add_info"></ul>');
         add_info.append('<li>'+
 							'<div class="tooltip_styled tooltip-effect-4">'+
@@ -295,7 +310,6 @@ function add_query_string_filter(key_query,value_query){
 
 			let key=list_query_string[i].split('=')[0];
 	    	let value=list_query_string[i].split('=')[1];
-	    	let list_value=value.split(',');
 			arr_query[key]=value;
 		}
 
@@ -324,4 +338,61 @@ function add_query_string_filter(key_query,value_query){
 		$('#querystring_filter').val(query_string_new);
 	}
 	
+}
+
+function remove_query_string_filter(key_query,value_query){
+	let query_string= $('#querystring_filter').val();
+	let list_query_string=query_string.split('&');
+	if(query_string.indexOf(key_query)===-1){
+		return;
+	}
+	let arr_query=[];
+	let list__value=[];
+	for (var i = list_query_string.length - 1; i >= 0; i--) {
+		let key=list_query_string[i].split('=')[0];
+	    let value=list_query_string[i].split('=')[1];
+	    if(key_query==key){
+	    	list__value=value.split(',');
+	    }
+	    
+		arr_query[key]=value;
+	}
+
+	if(key_query==="price"){
+		delete arr_query["minprice"];
+		delete arr_query["maxprice"];
+	}
+	else{
+		
+		for (var i = list__value.length - 1; i >= 0; i--) {
+			if(list__value[i]==value_query){
+				list__value.splice(i,1);
+				break;
+			}	
+		}
+		if(list__value.length==0){
+			delete arr_query[key_query];
+		}else{
+			arr_query[key_query]=list__value.toString();
+		}
+	}
+
+	var query_string_new="";
+	for (x in arr_query) {
+		if(query_string_new===""){
+			query_string_new=x+"="+arr_query[x];
+		}else
+			query_string_new=query_string_new+"&"+x+"="+arr_query[x];
+		}
+		
+	$('#querystring_filter').val(query_string_new);
+}
+
+function get_page_size(){
+	let url = base_url+"/tour/get_page_size";
+    let success = function(result) {
+		//let json_data = $.parseJSON(result);
+		return result;
+    };
+    $.get(url, data, success);
 }

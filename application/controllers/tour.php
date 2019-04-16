@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Tour extends CI_Controller {
     var $data = array();
+    var $page_size=6;
     public function __construct(){
         parent::__construct();  
         
@@ -107,7 +108,17 @@ class Tour extends CI_Controller {
 
     public function get_list_tour(){
         $this->load->model("tours_model");
-        echo json_encode($this->tours_model->getList());
+        $category=$this->input->get('category');
+        $rating=$this->input->get('rating');
+        $minprice=$this->input->get('minprice');
+        $maxprice=$this->input->get('maxprice');
+        $page=$this->input->get('page');
+        if($page==NULL) $page=1;
+        echo json_encode($this->tours_model->getListHaveFilter($category,$rating,$minprice,$maxprice,$page,$this->page_size));
+    }
+
+    public function get_page_size(){
+        echo $this->page_size;
     }
     public function get_list_tour_destination(){
         $this->load->model("tours_model");

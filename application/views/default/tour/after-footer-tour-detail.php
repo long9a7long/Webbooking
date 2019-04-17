@@ -3,23 +3,23 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title" id="myReviewLabel">Write your review</h4>
+					<h4 class="modal-title" id="myReviewLabel">Bạn thấy tour này thế nào?</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				</div>
 				<div class="modal-body">
 					<div id="message-review">
 					</div>
 					<form method="post" action="assets/review_tour.php" name="review_tour" id="review_tour">
-						<input name="tour_name" id="tour_name" type="hidden" value="Paris Arch de Triomphe Tour">
+						<input name="tour_id" id="tour_id" type="hidden" value="<?php echo $info_tour->tour_id; ?>">
 						<div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
-									<input name="name_review" id="name_review" type="text" placeholder="Your name" class="form-control">
+									<input name="name_review" id="name_review" type="text" placeholder="Tên của bạn" class="form-control">
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<input name="lastname_review" id="lastname_review" type="text" placeholder="Your last name" class="form-control">
+									<input name="lastname_review" id="lastname_review" type="text" placeholder="Họ và tên lót" class="form-control">
 								</div>
 							</div>
 						</div>
@@ -27,7 +27,7 @@
 						<div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
-									<input name="email_review" id="email_review" type="email" placeholder="Your email" class="form-control">
+									<input name="email_review" id="email_review" type="email" placeholder="Địa chỉ email" class="form-control">
 								</div>
 							</div>
 						</div>
@@ -36,29 +36,29 @@
 						<div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
-									<label>Position</label>
+									<label>Địa điểm</label>
 									<select class="form-control" name="position_review" id="position_review">
-										<option value="">Please review</option>
-										<option value="Low">Low</option>
-										<option value="Sufficient">Sufficient</option>
-										<option value="Good">Good</option>
-										<option value="Excellent">Excellent</option>
-										<option value="Superb">Super</option>
-										<option value="Not rated">I don't know</option>
+										<option value="">Chọn đánh giá</option>
+										<option value="1">Tệ</option>
+										<option value="2">Hơi tệ</option>
+										<option value="3">Chấp nhận được</option>
+										<option value="4">Tuyệt vời</option>
+										<option value="5">Rất tuyệt vời</option>
+										<option value="0">Tôi không biết</option>
 									</select>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<label>Tourist guide</label>
+									<label>Hướng dẫn viên</label>
 									<select class="form-control" name="guide_review" id="guide_review">
-										<option value="">Please review</option>
-										<option value="Low">Low</option>
-										<option value="Sufficient">Sufficient</option>
-										<option value="Good">Good</option>
-										<option value="Excellent">Excellent</option>
-										<option value="Superb">Super</option>
-										<option value="Not rated">I don't know</option>
+										<option value="">Chọn đánh giá</option>
+										<option value="1">Tệ</option>
+										<option value="2">Hơi tệ</option>
+										<option value="3">Chấp nhận được</option>
+										<option value="4">Tuyệt vời</option>
+										<option value="5">Rất tuyệt vời</option>
+										<option value="0">Tôi không biết</option>
 									</select>
 								</div>
 							</div>
@@ -67,41 +67,41 @@
 						<div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
-									<label>Price</label>
+									<label>Giá cả</label>
 									<select class="form-control" name="price_review" id="price_review">
-										<option value="">Please review</option>
-										<option value="Low">Low</option>
-										<option value="Sufficient">Sufficient</option>
-										<option value="Good">Good</option>
-										<option value="Excellent">Excellent</option>
-										<option value="Superb">Super</option>
-										<option value="Not rated">I don't know</option>
+										<option value="">Chọn đánh giá</option>
+										<option value="1">Tệ</option>
+										<option value="2">Hơi tệ</option>
+										<option value="3">Chấp nhận được</option>
+										<option value="4">Tuyệt vời</option>
+										<option value="5">Rất tuyệt vời</option>
+										<option value="0">Tôi không biết</option>
 									</select>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<label>Quality</label>
+									<label>Chất lượng dịch vụ</label>
 									<select class="form-control" name="quality_review" id="quality_review">
-										<option value="">Please review</option>
-										<option value="Low">Low</option>
-										<option value="Sufficient">Sufficient</option>
-										<option value="Good">Good</option>
-										<option value="Excellent">Excellent</option>
-										<option value="Superb">Super</option>
-										<option value="Not rated">I don't know</option>
+										<option value="">Chọn đánh giá</option>
+										<option value="1">Tệ</option>
+										<option value="2">Hơi tệ</option>
+										<option value="3">Chấp nhận được</option>
+										<option value="4">Tuyệt vời</option>
+										<option value="5">Rất tuyệt vời</option>
+										<option value="0">Tôi không biết</option>
 									</select>
 								</div>
 							</div>
 						</div>
 						<!-- End row -->
 						<div class="form-group">
-							<textarea name="review_text" id="review_text" class="form-control" style="height:100px" placeholder="Write your review"></textarea>
+							<textarea name="review_text" id="review_text" class="form-control" style="height:100px" placeholder="Hãy viết cảm nhận của bạn tại đây nhé!"></textarea>
 						</div>
 						<div class="form-group">
-							<input type="text" id="verify_review" class=" form-control" placeholder="Are you human? 3 + 1 =">
+							<input type="text" id="verify_review" class=" form-control" placeholder="Bạn không phải robot chứ? 3 + 1 =">
 						</div>
-						<input type="submit" value="Submit" class="btn_1" id="submit-review">
+						<input type="submit" value="Gửi đánh giá" class="btn_1" id="submit-review">
 					</form>
 				</div>
 			</div>

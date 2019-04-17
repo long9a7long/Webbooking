@@ -1,5 +1,22 @@
 $(function() {
+	
+	$('#cat_nav').mobileMenu();
+	$('input').iCheck({
+		   checkboxClass: 'icheckbox_square-grey',
+		   radioClass: 'iradio_square-grey'
+		 });
     get_list_tours();
+});
+$( document ).ready(function() {
+
+	//sự kiện chọn thứ tự hiển thị theo giá
+	$('#sort_price').on('change',function(e){
+		let value=$(this).val();
+		if(value!=""){
+			add_query_string_filter('orderby',value);
+		}
+		
+	});
 
     //Su kien click vao category tour
     $('.filter_by_category').on('click',function(e){
@@ -10,8 +27,7 @@ $(function() {
     	add_filter_items('category',id,content);
     	//thêm query string vào input hidden filter
     	add_query_string_filter('category',id);
-    	//lấy danh sách tours theo query string
-    	get_list_tours(get_list_query());
+    	
     });
 
     //Su kien thay doi gia tri filter gia
@@ -24,8 +40,6 @@ $(function() {
     	//thêm query string vào input hidden filter
     	add_query_string_filter('maxprice',to);
     	add_query_string_filter('minprice',from);
-    	//lấy danh sách tours theo query string
-    	get_list_tours(get_list_query());
 
     });
 
@@ -39,8 +53,7 @@ $(function() {
         if(type=='rating'){
         	$('input.filter-rating[data-id='+id+']').iCheck('uncheck');
         }
-
-        remove_query_string_filter(type,id);
+		remove_query_string_filter(type,id);
     });
 
 
@@ -69,8 +82,6 @@ $(function() {
 	    add_filter_items('rating',id,content);
     	//thêm query string vào input hidden filter
     	add_query_string_filter('rating',id);
-    	//lấy danh sách tours theo query string
-    	get_list_tours(get_list_query());
     	
     	
     });
@@ -79,7 +90,7 @@ $(function() {
     	e.preventDefault();
     	let id= $(this).data('id');
         $('span.filter-item').has('a[data-type=rating][data-id='+id+']').remove();
-        remove_query_string_filter('rating', id);
+		remove_query_string_filter('rating', id);
     });
 
 
@@ -87,11 +98,6 @@ $(function() {
 });
 
 
-$('#cat_nav').mobileMenu();
-$('input').iCheck({
-		   checkboxClass: 'icheckbox_square-grey',
-		   radioClass: 'iradio_square-grey'
-		 });
 
 
 function add_filter_items(type,id, content){
@@ -134,12 +140,26 @@ function add_filter_items(type,id, content){
 	}
 	
 }
+
+function get_parameter(name){
+	let url_string = window.location.href;
+	let url = new URL(url_string);
+	return  url.searchParams.get(name);
+
+}
+
 async function get_list_tours(data) {
 	let result;
-    var url = base_url+"/tour/get_list_tour";
-    var success = function(result) {
-        var json_data = $.parseJSON(result);
-        show_list_tours(json_data);
+	
+    let url = base_url+"/tour/get_list_tour";
+    let success = function(result) {
+		let json_data = $.parseJSON(result);
+		if(get_parameter('view'==1)){
+			show_list_tours(json_data);
+		}else{
+			show_list_tours_grid(json_data);
+		}
+        
     };
     try {
 		result = await $.get(url, data, success);
@@ -150,126 +170,237 @@ async function get_list_tours(data) {
 }
 
 function show_list_tours(data) {
-    let list = $('#list_tour_list');
-    list.empty();
-    for (let i = 0; i < data.length; i++) {
-        let tr = $('<div class="strip_all_tour_list wow fadeIn" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeIn;"></div>');
-        let r=$('<div class="row"></div>');
-        let col4=$('<div class="col-lg-4 col-md-4"></div>');
-        let col6=$('<div class="col-lg-6 col-md-6"></div>');
-        let col2=$('<div class="col-lg-2 col-md-2"></div>');
+	let list = $('#list_tour_list');
+	list.empty();
+	if(data['total_record']==0){
+		list.append("<p class='noti-filter__result'><strong>Không có kết quả nào cho tìm kiếm của bạn</strong><br/><span>Thử xóa những tiêu chí bạn đã chọn xem sao!</span></p>");
+	}else{
+		
+		for (let i = 0; i < data['total_record']; i++) {
+			let tr = $('<div class="strip_all_tour_list wow fadeIn" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeIn;"></div>');
+			let r=$('<div class="row"></div>');
+			let col4=$('<div class="col-lg-4 col-md-4"></div>');
+			let col6=$('<div class="col-lg-6 col-md-6"></div>');
+			let col2=$('<div class="col-lg-2 col-md-2"></div>');
+
+			if(data[i].tour_label!=null){
+				if(data[i].tour_label=="phổ biến"){
+					col4.append('<div class="ribbon_3 popular"><span>'+data[i].tour_label+'</span></div>');
+				}else{
+					col4.append('<div class="ribbon_3"><span>'+data[i].tour_label+'</span></div>');
+				}
+			}
+			
+
+			col4.append('<div class="wishlist">'+
+				'<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip">'+
+				'<span class="tooltip-back">Add to wishlist</span>'+
+				'</span></a></div>');
+			col4.append('<div class="img_list">'+
+							'<a href="tour/detail/'+data[i].tour_slug+'"><img data-src="'+data[i].tour_thumnail+'" alt="'+data[i].tour_name+'" class="lazyload">'+
+							'</a>'+
+						'</div>');
 
 
-        col4.append('<div class="ribbon_3 popular"><span>'+data[i].tour_label+'</span></div>');
+			let tour_list_desc=$('<div class="tour_list_desc"></div>');
+			let vote="";
+			for(let j=0;j<5;j++){
+				if(data[i].avg_rev>j)
+					vote+='<i class="icon-smile voted"></i>';
+				else
+					vote+='<i class="icon-smile"></i>';
+			}
+			tour_list_desc.append('<div class="rating">'+vote+
+							'<small>('+data[i].num_rev+')</small>'+
+						'</div>');
+			tour_list_desc.append('<h3>'+data[i].tour_name+'</h3>');
+			let except="";
+			if(data[i].tour_except==null){
+				except=getWords(data[i].tour_description,30)+'...';
+			}else{
+				except=getWords(data[i].tour_except,30)+'...';
+			}
+			tour_list_desc.append('<p>'+except+'</p>');
+			let add_info=$('<ul class="add_info"></ul>');
+			if(data[i].tour_destination!=null){
+				add_info.append('<li>'+
+								'<div class="tooltip_styled tooltip-effect-4">'+
+									'<span class="tooltip-item"><i class="icon_set_1_icon-41"></i></span>'+
+									'<div class="tooltip-content">'+
+										'<h4>Điểm đến</h4> '+data[i].tour_destination+
+										'<br>'+
+									'</div>'+
+								'</div>'+
+							'</li>');
+			}
+			if(data[i].tour_duration!=null){
+				add_info.append('<li>'+
+								'<div class="tooltip_styled tooltip-effect-4">'+
+									'<span class="tooltip-item"><i class="icon-calendar"></i></span>'+
+									'<div class="tooltip-content">'+
+										'<h4>Thời lượng</h4> '+data[i].tour_duration+
+									'</div>'+
+								'</div>'+
+							'</li>');
+			}
+			if(data[i].tour_availability!=null){
+				add_info.append('<li>'+
+								'<div class="tooltip_styled tooltip-effect-4">'+
+									'<span class="tooltip-item"><i class="icon-users-1"></i></span>'+
+									'<div class="tooltip-content">'+
+										'<h4>Số lượng tối đa</h4> '+data[i].tour_availability+' người'+
+									'</div>'+
+								'</div>'+
+							'</li>');
+			}
+			
+			tour_list_desc.append(add_info);
 
-        col4.append('<div class="wishlist">'+
-        	'<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip">'+
-        	'<span class="tooltip-back">Add to wishlist</span>'+
-        	+'</span></a></div>');
-        col4.append('<div class="img_list">'+
-						'<a href="tour/detail/'+data[i].tour_slug+'"><img data-src="'+data[i].tour_thumnail+'" alt="'+data[i].tour_name+'" class="lazyload">'+
-						'</a>'+
-					'</div>');
+			col6.append(tour_list_desc);
 
+			col2.append('<div class="price_list">'+
+							'<div>'+format_curency(data[i].tour_saving_price)+'<sup>đ</sup><span class="normal_price_list">'+format_curency(data[i].tour_price)+'đ</span><small>*1 người</small>'+
+								'<p><a href="tour/detail/'+data[i].tour_slug+'" class="btn_1">Chọn</a>'+
+								'</p>'+
+							'</div>'+
+						'</div>');
+			r.append(col4);
+			r.append(col6);
+			r.append(col2);
 
-		let tour_list_desc=$('<div class="tour_list_desc"></div>');
-		let vote="";
-		for(let j=0;j<5;j++){
-			if(data[i].avg_rev>j)
-				vote+='<i class="icon-smile voted"></i>';
-			else
-				vote+='<i class="icon-smile"></i>';
+			tr.append(r);
+			list.append(tr);
 		}
-        tour_list_desc.append('<div class="rating">'+vote+
-						'<small>('+data[i].num_rev+')</small>'+
-					'</div>');
-		tour_list_desc.append('<h3>'+data[i].tour_name+'</h3>');
-		let except="";
-		if(data[i].tour_except==null){
-			except=getWords(data[i].tour_description,30)+'...';
-		}else{
-			except=data[i].tour_except;
-		}
-        tour_list_desc.append('<p>'+except+'</p>');
-        let add_info=$('<ul class="add_info"></ul>');
-        add_info.append('<li>'+
-							'<div class="tooltip_styled tooltip-effect-4">'+
-								'<span class="tooltip-item"><i class="icon_set_1_icon-83"></i></span>'+
-								'<div class="tooltip-content">'+
-									'<h4>Schedule</h4>'+
-									'<strong>Monday to Friday</strong> 09.00 AM - 5.30 PM'+
-									'<br>'+
-									'<strong>Saturday</strong> 09.00 AM - 5.30 PM'+
-									'<br>'+
-									'<strong>Sunday</strong> <span class="label label-danger">Closed</span>'+
-								'</div>'+
-							'</div>'+
-						'</li>');
-        add_info.append('<li>'+
-							'<div class="tooltip_styled tooltip-effect-4">'+
-								'<span class="tooltip-item"><i class="icon_set_1_icon-41"></i></span>'+
-								'<div class="tooltip-content">'+
-									'<h4>Address</h4> Musée du Louvre, 75058 Paris - France'+
-									'<br>'+
-								'</div>'+
-							'</div>'+
-						'</li>');
-		add_info.append('<li>'+
-							'<div class="tooltip_styled tooltip-effect-4">'+
-								'<span class="tooltip-item"><i class="icon_set_1_icon-97"></i></span>'+
-								'<div class="tooltip-content">'+
-									'<h4>Languages</h4> English - French - Chinese - Russian - Italian'+
-								'</div>'+
-							'</div>'+
-						'</li>');
-		add_info.append('<li>'+
-							'<div class="tooltip_styled tooltip-effect-4">'+
-								'<span class="tooltip-item"><i class="icon_set_1_icon-27"></i></span>'+
-								'<div class="tooltip-content">'+
-									'<h4>Parking</h4> 1-3 Rue Elisée Reclus'+
-									'<br> 76 Rue du Général Leclerc'+
-									'<br> 8 Rue Caillaux 94923'+
-									'<br>'+
-								'</div>'+
-							'</div>'+
-						'</li>');
-		add_info.append('<li>'+
-							'<div class="tooltip_styled tooltip-effect-4">'+
-								'<span class="tooltip-item"><i class="icon_set_1_icon-25"></i></span>'+
-								'<div class="tooltip-content">'+
-									'<h4>Transport</h4>'+
-									'<strong>Metro: </strong>Musée du Louvre station (line 1)'+
-									'<br>'+
-									'<strong>Bus:</strong> 21, 24, 27, 39, 48, 68, 69, 72, 81, 95'+
-									'<br>'+
-								'</div>'+
-							'</div>'+
-						'</li>');
-		tour_list_desc.append(add_info);
+		pagination(data['tours_count'],data['page_size']);
+	}
+    
 
-		col6.append(tour_list_desc);
-
-		col2.append('<div class="price_list">'+
-						'<div><sup>$</sup>39*<span class="normal_price_list">$99</span><small>*Per person</small>'+
-							'<p><a href="tour/detail/abc" class="btn_1">Details</a>'+
-							'</p>'+
-						'</div>'+
-					'</div>');
-        r.append(col4);
-        r.append(col6);
-        r.append(col2);
-
-        tr.append(r);
-        list.append(tr);
-    }
 }
 
+function show_list_tours_grid(data){
+	let list = $('#list_tour_list');
+	list.empty();
+	if(data['total_record']==0){
+		list.append("<p class='noti-filter__result'><strong>Không có kết quả nào cho tìm kiếm của bạn</strong><br/><span>Thử xóa những tiêu chí bạn đã chọn xem sao!</span></p>");
+	}else{
+		
+		for (let i = 0; i < data['total_record']/2; i++) {
+			let row=$('<div class="row"></div>');
+			//post1 in row
+			for( let j=0;j<=1;j++){
+				if(data[2*i+j]!=null){
+					let col_6=$('<div class="col-md-6 wow zoomIn" data-wow-delay="0.1s"></div>');
+					let container=$('<div class="tour_container"></div>');
+					if(data[2*i+j].tour_label!=null){
+						
+						if(data[2*i+j].tour_label=="phổ biến"){
+							container.append('<div class="ribbon_3 popular"><span>'+data[2*i+j].tour_label+'</span></div>');
+						}else{
+							container.append('<div class="ribbon_3"><span>'+data[2*i+j].tour_label+'</span></div>');
+						}
+					}
+					container.append('<div class="img_container">'+
+										'<a href="'+base_url+'/tour/detail/'+data[2*i+j].tour_slug+'">'+
+											'<img src="'+data[2*i+j].tour_thumnail+'" width="800" height="533" class="img-fluid" alt="'+data[2*i+j].tour_name+'">'+
+										'</a>'+
+										'<div class="short_info">'+
+											'<span class="price">'+format_curency(data[2*i+j].tour_saving_price)+'<sup>đ</sup></span>'+
+										'</div>'+
+									'</div>');
+					let tour_title=$('<div class="tour_title"></div>');
+					tour_title.append('<h3><strong>'+data[2*i+j].tour_name+'</h3>');
+					let vote="";
+					for(let j=0;j<5;j++){
+						if(data[i].avg_rev>j)
+							vote+='<i class="icon-smile voted"></i>';
+						else
+							vote+='<i class="icon-smile"></i>';
+					}
+					tour_title.append('<div class="rating">'+vote+'<small>('+data[2*i+j].num_rev+')</small></div>');
+					tour_title.append('<div class="wishlist">'+
+											'<a class="tooltip_flip tooltip-effect-1" href="#">+<span class="tooltip-content-flip">'+
+											'<span class="tooltip-back">Add to wishlist</span>'+
+											'</span></a>'+
+										'</div>');
+					container.append(tour_title);
+					col_6.append(container);
+					row.append(col_6);
+				}
+				
+			}
+			list.append(row);
+		}
+		//phân trang
+		pagination(data['tours_count'],data['page_size']);
+	}
+}
+
+function pagination(num_post,page_size){
+	let total_page=num_post/page_size;
+	if(num_post>page_size){
+		let nav= $('#pagination-list__post');
+		nav.empty();
+		let ul=$('<ul class="pagination justify-content-center"></ul>');
+		let previous=$('<li class="page-item">'+
+							'<a class="page-link" onclick="go_to_page(1)" aria-label="First">'+
+								'<span aria-hidden="true">«</span>'+
+								'<span class="sr-only">Đầu tiên</span>'+
+							'</a>'+
+						'</li>');
+		let next=$('<li class="page-item">'+
+						'<a class="page-link" onclick="go_to_page('+total_page+')" aria-label="Last">'+
+							'<span aria-hidden="true">»</span>'+
+							'<span class="sr-only">Cuối cùng</span>'+
+						'</a>'+
+					'</li>');
+		ul.append(previous);
+		let data=get_list_query();
+		let current_page=data.page==undefined?1: data.page;
+		
+		if(current_page==1){
+			for(let i=current_page;i<4;i++){
+				if(total_page<i) break;
+				else{
+					if(current_page==i){
+						ul.append('<li class="page-item active"><span class="page-link">'+i+'<span class="sr-only">(current)</span></span></li>');
+					}else{
+						ul.append('<li class="page-item"><a class="page-link" onclick="go_to_page('+i+')">'+i+'</a></li>');
+					}
+					
+				}
+			}
+		}else{
+			for(let i=current_page-1;i<3;i++){
+				if(total_page<i) break;
+				else{
+					if(current_page==i){
+						ul.append('<li class="page-item active"><span class="page-link">'+i+'<span class="sr-only">(current)</span></span></li>');
+					}else{
+						ul.append('<li class="page-item"><a class="page-link" onclick="go_to_page('+i+')">'+i+'</a></li>');
+					}
+					
+				}
+			}
+		}
+		
+
+		ul.append(next);
+		nav.append(ul);
+	}
+	else{
+		return;
+	}
+
+}
+
+
+//Lấy ra ds data truy vấn get
 function get_list_query()
 {
     let query_string= $('#querystring_filter').val();
     let data={};
     let list_query_string=query_string.split('&');
-    for (var i = list_query_string.length - 1; i >= 0; i--) {
+    for (let i = list_query_string.length - 1; i >= 0; i--) {
     		let key=list_query_string[i].split('=')[0];
     		let value=list_query_string[i].split('=')[1];
     		switch (key){
@@ -284,6 +415,12 @@ function get_list_query()
     				break;
     			case "rating":
     				data.rating=value;
+					break;
+				case "page":
+    				data.page=value;
+					break;
+				case "orderby":
+    				data.orderby=value;
     				break;
     			
     		}
@@ -292,6 +429,7 @@ function get_list_query()
     return data;
 }
 
+//thêm tham số vào data truy vấn get
 function add_query_string_filter(key_query,value_query){
 	let query_string= $('#querystring_filter').val();
 	let list_query_string=query_string.split('&');
@@ -306,7 +444,7 @@ function add_query_string_filter(key_query,value_query){
 	}
 	else{
 		let arr_query=[];
-		for (var i = list_query_string.length - 1; i >= 0; i--) {
+		for (let i = list_query_string.length - 1; i >= 0; i--) {
 
 			let key=list_query_string[i].split('=')[0];
 	    	let value=list_query_string[i].split('=')[1];
@@ -319,7 +457,7 @@ function add_query_string_filter(key_query,value_query){
 		else{
 			let value=arr_query[key_query];
 			if(value.indexOf(value_query)===-1){
-				if(key_query!=="minprice"&&key_query!=="maxprice"){
+				if(key_query!=="minprice"&&key_query!=="maxprice"&&key_query!=="page"&&key_query!=="orderby"){
 		     		value=value+','+value_query;
 				}else{
 					value=value_query;
@@ -327,7 +465,7 @@ function add_query_string_filter(key_query,value_query){
 		     }
 		     arr_query[key_query]=value;
 		}
-		var query_string_new="";
+		let query_string_new="";
 		for (x in arr_query) {
 		  	if(query_string_new===""){
 				query_string_new=x+"="+arr_query[x];
@@ -336,10 +474,13 @@ function add_query_string_filter(key_query,value_query){
 		}
 		
 		$('#querystring_filter').val(query_string_new);
+		
 	}
-	
+	//lấy danh sách tours theo query string
+	get_list_tours(get_list_query());
 }
 
+//xóa tham số trong data truy vấn get
 function remove_query_string_filter(key_query,value_query){
 	let query_string= $('#querystring_filter').val();
 	let list_query_string=query_string.split('&');
@@ -348,7 +489,7 @@ function remove_query_string_filter(key_query,value_query){
 	}
 	let arr_query=[];
 	let list__value=[];
-	for (var i = list_query_string.length - 1; i >= 0; i--) {
+	for (let i = list_query_string.length - 1; i >= 0; i--) {
 		let key=list_query_string[i].split('=')[0];
 	    let value=list_query_string[i].split('=')[1];
 	    if(key_query==key){
@@ -364,7 +505,7 @@ function remove_query_string_filter(key_query,value_query){
 	}
 	else{
 		
-		for (var i = list__value.length - 1; i >= 0; i--) {
+		for (let i = list__value.length - 1; i >= 0; i--) {
 			if(list__value[i]==value_query){
 				list__value.splice(i,1);
 				break;
@@ -377,7 +518,7 @@ function remove_query_string_filter(key_query,value_query){
 		}
 	}
 
-	var query_string_new="";
+	let query_string_new="";
 	for (x in arr_query) {
 		if(query_string_new===""){
 			query_string_new=x+"="+arr_query[x];
@@ -386,13 +527,12 @@ function remove_query_string_filter(key_query,value_query){
 		}
 		
 	$('#querystring_filter').val(query_string_new);
+	//lấy danh sách tours theo query string
+	get_list_tours(get_list_query());
 }
 
-function get_page_size(){
-	let url = base_url+"/tour/get_page_size";
-    let success = function(result) {
-		//let json_data = $.parseJSON(result);
-		return result;
-    };
-    $.get(url, data, success);
+//Chuyển sang trang khác
+function go_to_page(page){
+	add_query_string_filter('page',page);
+	get_list_tours(get_list_query());
 }

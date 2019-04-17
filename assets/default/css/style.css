@@ -6069,12 +6069,10 @@ only screen and (min-device-pixel-ratio: 2) and (max-width: 991px) {
 	
 	.row-height {
 		height: auto;
-		min-height: ;
 	}
 	
 	.content-left {
 		height: auto;
-		min-height: ;
 		overflow-y: scroll;
 	}
 	
@@ -6130,12 +6128,10 @@ only screen and (min-device-pixel-ratio: 2) and (max-width: 991px) {
 	
 	.row-height {
 		height: auto;
-		min-height: ;
 	}
 	
 	.content-left {
 		height: auto;
-		min-height: ;
 		overflow-y: scroll;
 	}
 	
@@ -6711,4 +6707,22 @@ only screen and (min-device-pixel-ratio: 2) and (max-width: 991px) {
 }
 .filter-item a:hover{
 	color: red;
+}
+
+.price_list div{
+	font-size: 24px;
+}
+.tour_list_desc h3{
+	font-weight: 550
+}
+
+.noti-filter__result{
+	color: #333;
+	text-align: center;
+	font-size: 1.5rem;
+	background-color: #fff;
+	padding: 10px
+}
+.noti-filter__result span{
+	font-size: 1rem;
 }

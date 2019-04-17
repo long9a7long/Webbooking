@@ -3,11 +3,46 @@ class Tours_model extends CI_Model
 {
     public function get_tour_info($tour_id){
         $result = $this->db->get_where("tours", array('tour_id' => $tour_id));
-
 		return $result->row();
     }
 
-    public function getListHaveFilter($category,$rating,$minprice,$maxprice,$page,$page_size)
+    public function get_tour_info_by_slug($tour_slug){
+        
+        //join cột điểm trung bình review của tour
+        $sql_avg_star="(Select ROUND(AVG(rev_star),0) as avg_rev,tour_id from review_tour GROUP BY review_tour.tour_id) as rev_tbl";
+        $this->db->join($sql_avg_star,'rev_tbl.tour_id=tours.tour_id');
+
+        //join cột điểm trung bình review quality của tour
+        $sql_avg_star="(Select ROUND(AVG(rev_quality),0) as avg_quality,tour_id from review_tour GROUP BY review_tour.tour_id) as rev_tbl1";
+        $this->db->join($sql_avg_star,'rev_tbl1.tour_id=tours.tour_id');
+
+        //join cột điểm trung bình review price của tour
+        $sql_avg_star="(Select ROUND(AVG(rev_price),0) as avg_price,tour_id from review_tour GROUP BY review_tour.tour_id) as rev_tbl2";
+        $this->db->join($sql_avg_star,'rev_tbl2.tour_id=tours.tour_id');
+
+        //join cột điểm trung bình review guide của tour
+        $sql_avg_star="(Select ROUND(AVG(rev_guide),0) as avg_guide,tour_id from review_tour GROUP BY review_tour.tour_id) as rev_tbl3";
+        $this->db->join($sql_avg_star,'rev_tbl3.tour_id=tours.tour_id');
+
+        //join cột điểm trung bình review position của tour
+        $sql_avg_star="(Select ROUND(AVG(rev_position),0) as avg_position,tour_id from review_tour GROUP BY review_tour.tour_id) as rev_tbl4";
+        $this->db->join($sql_avg_star,'rev_tbl4.tour_id=tours.tour_id');
+        //join cột tổng số lượng review của tour
+        $sql_num_rev="(Select count(review_tour.tour_id) as num_rev,tour_id from review_tour GROUP BY review_tour.tour_id) as revs_num";
+        $this->db->join($sql_num_rev,'revs_num.tour_id=tours.tour_id');
+        $this->db->where('tour_slug',$tour_slug);
+        $result = $this->db->get("tours");
+		return $result->row();
+    }
+    
+    public function getListReviewByID($tour_id){
+        $this->db->where('tour_id',$tour_id);
+        $result = $this->db->get("review_tour");
+        //trả kết quả về dạng mảng
+        return $result->result();
+    }
+
+    public function getListHaveFilter($category,$rating,$minprice,$maxprice,$orderby,$page,$page_size)
     {
         //lọc bài viết theo category 
         if($category!=NULL){
@@ -22,7 +57,10 @@ class Tours_model extends CI_Model
         $this->db->join($sql_avg_star,'rev_tbl.tour_id=tours.tour_id');
         //lọc bài viết theo tiêu chí đánh giá
         if($rating!=NULL){
-            $this->db->where('avg_rev >',$rating);
+            $arr_rating=explode(',', $rating);
+            foreach($arr_rating as $item ){
+                $this->db->or_where('avg_rev=',$item);
+            }
         }
         //lọc bài viết theo giá tour
         if($minprice!=NULL){
@@ -35,6 +73,19 @@ class Tours_model extends CI_Model
             $this->db->or_where('tour_price >=',$maxprice);
         }
         
+        if($orderby!=NULL){
+            switch ($orderby){
+                case "pricelower":
+                    $this->db->order_by("tour_saving_price", "asc"); 
+                    break;
+                case "pricehigher":
+                    $this->db->order_by("tour_saving_price", "desc"); 
+                    break;
+            }
+        }else{
+            $this->db->order_by("tours.tour_id", "desc");
+        }
+
         $this->db->limit($page_size,($page-1)*$page_size);
         //join cột tổng số lượng review của tour
         $sql_num_rev="(Select count(review_tour.tour_id) as num_rev,tour_id from review_tour GROUP BY review_tour.tour_id) as revs_num";
@@ -43,6 +94,42 @@ class Tours_model extends CI_Model
         $query=$this->db->get("tours");
         //trả kết quả về dạng mảng
         return $query->result_array();
+    }
+
+
+    public function tours_count($category,$rating,$minprice,$maxprice)
+    {
+        //lọc bài viết theo category 
+        if($category!=NULL){
+            $arr_category=explode(',', $category);
+            foreach($arr_category as $item ){
+                $this->db->or_where("$item in (SELECT `list_category_tour`.`category_tour_id` FROM `list_category_tour` WHERE `list_category_tour`.`tour_id`=tours.tour_id)");
+            }
+        }
+        
+        //join cột điểm trung bình review của tour
+        $sql_avg_star="(Select ROUND(AVG(rev_star),0) as avg_rev,tour_id from review_tour GROUP BY review_tour.tour_id) as rev_tbl";
+        $this->db->join($sql_avg_star,'rev_tbl.tour_id=tours.tour_id');
+        //lọc bài viết theo tiêu chí đánh giá
+        if($rating!=NULL){
+            $this->db->where('avg_rev',$rating);
+        }
+        //lọc bài viết theo giá tour
+        if($minprice!=NULL){
+            $this->db->where('tour_saving_price >=',$minprice);
+            $this->db->or_where('tour_price >=',$minprice);
+        }
+            
+        if($maxprice!=NULL){
+            $this->db->where('tour_saving_price <=',$maxprice);
+            $this->db->or_where('tour_price >=',$maxprice);
+        }
+        //join cột tổng số lượng review của tour
+        $sql_num_rev="(Select count(review_tour.tour_id) as num_rev,tour_id from review_tour GROUP BY review_tour.tour_id) as revs_num";
+        $this->db->join($sql_num_rev,'revs_num.tour_id=tours.tour_id');
+        $query=$this->db->get("tours");
+        //đếm số lượng records
+        return count($query->result_array());
     }
 
     public function getList($category,$rating,$minprice,$maxprice,$page,$page_size)

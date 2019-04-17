@@ -196,12 +196,12 @@ $(function () {
 		hide_min_max: true,
 		keyboard: true,
 		min: 0,
-		max: 150,
-		from: 30,
-		to: 100,
+		max: 10000,
+		from: 1000,
+		to: 5000,
 		type: 'double',
-		step: 1,
-		prefix: "$",
+		step: 10,
+		prefix: "<sup>nghìn</sup>",
 		grid: true
 	});
 
@@ -303,7 +303,17 @@ $('.carousel-thumbs-2').owlCarousel({
 		}
 	}
 });
+
+//lấy numwords từ từ chuối str
 function getWords(str,numwords) {
     return str.split(/\s+/).slice(0,numwords).join(" ");
 }
+
+//định dạng số theo kiểu tiền tệ
+function format_curency(a) {
+	return a.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+
+}
+
+//get base_url của web, triển khai lên host thì xóa "+ '/' +window.location.pathname.split('/')[1];"
 var base_url = window.location.origin+ '/' +window.location.pathname.split('/')[1]; 

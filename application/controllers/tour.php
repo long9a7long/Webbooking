@@ -48,6 +48,7 @@ class Tour extends CI_Controller {
     //Single tour page
     public function detail()
     {
+        $this->load->model("tours_model");
         $this -> data['title'] = "Booking Tour";
         $this -> data['after_header'] = "default/tour/tour-detail-slide"; 
 
@@ -65,8 +66,19 @@ class Tour extends CI_Controller {
 
         $this -> data['custom_js_external'] = array(
             "https://maps.googleapis.com/maps/api/js");
-
-        $this->load->view("default/template",$this ->data);
+        
+        //get slug tour
+        $tour_slug=$this->uri->segment(3);
+        $info_tour=$this->tours_model->get_tour_info_by_slug($tour_slug);
+        if($info_tour==NULL)
+            redirect(base_url().'tour');
+        else{
+            $this ->data['info_tour']=$info_tour;
+            //get list review of tour by tour id
+            $this ->data['reviews_tour']=$this->tours_model->getListReviewByID($info_tour->tour_id);
+            $this->load->view("default/template",$this ->data);
+        }
+            
     }
 
     //Function cart for booking tour
@@ -109,17 +121,25 @@ class Tour extends CI_Controller {
     public function get_list_tour(){
         $this->load->model("tours_model");
         $category=$this->input->get('category');
+        //echo $category;
         $rating=$this->input->get('rating');
-        $minprice=$this->input->get('minprice');
-        $maxprice=$this->input->get('maxprice');
+        $minprice=((int)$this->input->get('minprice'))*1000;
+        $maxprice=((int)$this->input->get('maxprice'))*1000;
         $page=$this->input->get('page');
+        $orderby=$this->input->get('orderby');
         if($page==NULL) $page=1;
-        echo json_encode($this->tours_model->getListHaveFilter($category,$rating,$minprice,$maxprice,$page,$this->page_size));
+        
+        //lấy ds bài post
+        $arr=$this->tours_model->getListHaveFilter($category,$rating,$minprice,$maxprice,$orderby,$page,$this->page_size);
+        //echo $this->db->last_query();
+        //đếm số lượng ds bài post lấy đc
+        $arr['total_record']=count($arr);
+        $arr['tours_count']=$this->tours_model->tours_count($category,$rating,$minprice,$maxprice);
+        $arr['page_size']=$this->page_size;
+        
+        echo json_encode($arr);
     }
 
-    public function get_page_size(){
-        echo $this->page_size;
-    }
     public function get_list_tour_destination(){
         $this->load->model("tours_model");
         echo json_encode($this->tours_model->get_list_tour_destination());

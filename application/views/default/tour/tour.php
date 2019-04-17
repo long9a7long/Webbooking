@@ -114,8 +114,8 @@
 							<div class="styled-select-filters">
 								<select name="sort_price" id="sort_price">
 									<option value="" selected="">Sort by price</option>
-									<option value="lower">Lowest price</option>
-									<option value="higher">Highest price</option>
+									<option value="pricelower">Lowest price</option>
+									<option value="pricehigher">Highest price</option>
 								</select>
 							</div>
 						</div>
@@ -131,25 +131,7 @@
 				</div>
 				<hr>
 
-				<nav aria-label="Page navigation">
-					<ul class="pagination justify-content-center">
-						<li class="page-item">
-							<a class="page-link" href="#" aria-label="Previous">
-								<span aria-hidden="true">«</span>
-								<span class="sr-only">Previous</span>
-							</a>
-						</li>
-						<li class="page-item active"><span class="page-link">1<span class="sr-only">(current)</span></span>
-						</li>
-						<li class="page-item"><a class="page-link" href="#">2</a></li>
-						<li class="page-item"><a class="page-link" href="#">3</a></li>
-						<li class="page-item">
-							<a class="page-link" href="#" aria-label="Next">
-								<span aria-hidden="true">»</span>
-								<span class="sr-only">Next</span>
-							</a>
-						</li>
-					</ul>
+				<nav id="pagination-list__post" aria-label="Page navigation">
 				</nav>
 				<!-- end pagination-->
 

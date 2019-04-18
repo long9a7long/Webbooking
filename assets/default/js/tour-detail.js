@@ -1,3 +1,4 @@
+
 $('input.date-pick').datepicker('setDate', 'today');
 		$('input.time-pick').timepicker({
 			minuteStep: 15,
@@ -14,7 +15,7 @@ $('input').iCheck({
 		 });
 
 $(document).ready(function ($) {
-			$('#Img_carousel').sliderPro({
+	$('#Img_carousel').sliderPro({
 				width: 960,
 				height: 500,
 				fade: true,
@@ -27,7 +28,8 @@ $(document).ready(function ($) {
 				largeSize: 3000,
 				thumbnailArrows: true,
 				autoplay: false
-			});
-		});
+	});
+});
+
 
 

@@ -76,8 +76,7 @@ jQuery(document).ready(function(){
 jQuery(document).ready(function(){
 
 	$('#review_tour').submit(function(){
-
-		var action = $(this).attr('action');
+		let action = base_url+"/tour/submit_review_tour";
 
 		$("#message-review").slideUp(750,function() {
 		$('#message-review').hide();
@@ -85,7 +84,7 @@ jQuery(document).ready(function(){
 		$('#submit-review')
 			.after('<i class="icon-spin4 animate-spin loader"></i>')
 			.attr('disabled','disabled');
-
+		
 		$.post(action, {
 			tour_name: $('#tour_name').val(),
 			name_review: $('#name_review').val(),

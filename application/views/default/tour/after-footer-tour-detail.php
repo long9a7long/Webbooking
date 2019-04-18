@@ -9,7 +9,8 @@
 				<div class="modal-body">
 					<div id="message-review">
 					</div>
-					<form method="post" action="assets/review_tour.php" name="review_tour" id="review_tour">
+					<form method="post"  name="review_tour" id="review_tour">
+					
 						<input name="tour_id" id="tour_id" type="hidden" value="<?php echo $info_tour->tour_id; ?>">
 						<div class="row">
 							<div class="col-md-6">
@@ -98,9 +99,7 @@
 						<div class="form-group">
 							<textarea name="review_text" id="review_text" class="form-control" style="height:100px" placeholder="Hãy viết cảm nhận của bạn tại đây nhé!"></textarea>
 						</div>
-						<div class="form-group">
-							<input type="text" id="verify_review" class=" form-control" placeholder="Bạn không phải robot chứ? 3 + 1 =">
-						</div>
+						
 						<input type="submit" value="Gửi đánh giá" class="btn_1" id="submit-review">
 					</form>
 				</div>

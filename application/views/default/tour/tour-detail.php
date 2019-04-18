@@ -21,18 +21,20 @@
 				<div class="col-lg-8" id="single_tour_desc">
 					<div id="single_tour_feat">
 						<ul>
-							<li><i class="icon_set_1_icon-83"></i><?php echo $info_tour->tour_duration;?></li>
-							<li><i class="icon_set_1_icon-82"></i><?php echo $info_tour->tour_hits;?> lượt xem</li>
-							<li><i class="icon_set_1_icon-29"></i><?php echo $info_tour->tour_availability;?> người</li>
+							<li><i class="icon_set_1_icon-83"></i><?php if($info_tour->tour_duration!=NULL) echo $info_tour->tour_duration;?></li>
+							<li><i class="icon_set_1_icon-82"></i><?php if($info_tour->tour_hits!=NULL) echo $info_tour->tour_hits;?> lượt xem</li>
+							<li><i class="icon_set_1_icon-29"></i><?php if($info_tour->tour_availability!=NULL) echo $info_tour->tour_availability;?> người</li>
 						</ul>
 					</div>
 
 					<p class="d-none d-md-block d-block d-lg-none"><a class="btn_map" data-toggle="collapse" href="#collapseMap" aria-expanded="false" aria-controls="collapseMap" data-text-swap="Hide map" data-text-original="View on map">View on map</a></p>
 					<!-- Map button for tablets/mobiles -->
-
+					<?php 
+					if($info_tour->album_tour!=NULL){ ?>
 					<div id="Img_carousel" class="slider-pro">
 						<div class="sp-slides">
 							<?php
+							
 							$album_tour=explode("|",$info_tour->album_tour);
 							foreach($album_tour as $item){
 							?>
@@ -53,7 +55,10 @@
 								<img alt="<?php echo $info_tour->tour_name; ?>" class="sp-thumbnail" src="<?php echo $item; ?>">
 							<?php } ?>
 						</div>
-					</div>
+					</div>	
+					<?php }
+					?>
+					
 
 					<hr>
 

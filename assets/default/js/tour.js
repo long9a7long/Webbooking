@@ -1,5 +1,4 @@
 $(function() {
-	
 	$('#cat_nav').mobileMenu();
 	$('input').iCheck({
 		   checkboxClass: 'icheckbox_square-grey',
@@ -9,6 +8,7 @@ $(function() {
 });
 $( document ).ready(function() {
 
+	
 	//sự kiện chọn thứ tự hiển thị theo giá
 	$('#sort_price').on('change',function(e){
 		let value=$(this).val();
@@ -98,8 +98,6 @@ $( document ).ready(function() {
 });
 
 
-
-
 function add_filter_items(type,id, content){
 	let filter=$('#row-filter');
 	//add filter category
@@ -152,12 +150,13 @@ async function get_list_tours(data) {
 	let result;
 	
     let url = base_url+"/tour/get_list_tour";
-    let success = function(result) {
-		let json_data = $.parseJSON(result);
-		if(get_parameter('view'==1)){
-			show_list_tours(json_data);
-		}else{
+    let success = function(responce) {
+		let json_data = $.parseJSON(responce);
+		if(get_parameter('view')==2){
 			show_list_tours_grid(json_data);
+		}else{
+			show_list_tours(json_data);
+			
 		}
         
     };
@@ -197,7 +196,7 @@ function show_list_tours(data) {
 				'<span class="tooltip-back">Add to wishlist</span>'+
 				'</span></a></div>');
 			col4.append('<div class="img_list">'+
-							'<a href="tour/detail/'+data[i].tour_slug+'"><img data-src="'+data[i].tour_thumnail+'" alt="'+data[i].tour_name+'" class="lazyload">'+
+							'<a href="'+base_url+'/tour/detail/'+data[i].tour_slug+'"><img data-src="'+data[i].tour_thumnail+'" alt="'+data[i].tour_name+'" class="lazyload">'+
 							'</a>'+
 						'</div>');
 
@@ -260,7 +259,7 @@ function show_list_tours(data) {
 
 			col2.append('<div class="price_list">'+
 							'<div>'+format_curency(data[i].tour_saving_price)+'<sup>đ</sup><span class="normal_price_list">'+format_curency(data[i].tour_price)+'đ</span><small>*1 người</small>'+
-								'<p><a href="tour/detail/'+data[i].tour_slug+'" class="btn_1">Chọn</a>'+
+								'<p><a href="'+base_url+'/tour/detail/'+data[i].tour_slug+'" class="btn_1">Chọn</a>'+
 								'</p>'+
 							'</div>'+
 						'</div>');

@@ -9,26 +9,26 @@ class Tours_model extends CI_Model
     public function get_tour_info_by_slug($tour_slug){
         
         //join cột điểm trung bình review của tour
-        $sql_avg_star="(Select ROUND(AVG(rev_star),0) as avg_rev,tour_id from review_tour GROUP BY review_tour.tour_id) as rev_tbl";
+        $sql_avg_star="(Select ROUND(AVG(rev_star),0) as avg_rev,tour_id from review_tour GROUP BY review_tour.tour_id union select tours.tour_price=0 as avg_rev,tour_id from tours where tour_id not in ( Select tour_id from review_tour GROUP BY review_tour.tour_id) and tours.tour_slug= '$tour_slug' ) as rev_tbl";
         $this->db->join($sql_avg_star,'rev_tbl.tour_id=tours.tour_id');
 
         //join cột điểm trung bình review quality của tour
-        $sql_avg_star="(Select ROUND(AVG(rev_quality),0) as avg_quality,tour_id from review_tour GROUP BY review_tour.tour_id) as rev_tbl1";
+        $sql_avg_star="(Select ROUND(AVG(rev_quality),0) as avg_quality,tour_id from review_tour GROUP BY review_tour.tour_id  union select tours.tour_price=0 as avg_quality,tour_id from tours where tour_id not in ( Select tour_id from review_tour GROUP BY review_tour.tour_id) and tours.tour_slug= '$tour_slug' ) as rev_tbl1";
         $this->db->join($sql_avg_star,'rev_tbl1.tour_id=tours.tour_id');
-
+        
         //join cột điểm trung bình review price của tour
-        $sql_avg_star="(Select ROUND(AVG(rev_price),0) as avg_price,tour_id from review_tour GROUP BY review_tour.tour_id) as rev_tbl2";
+        $sql_avg_star="(Select ROUND(AVG(rev_price),0) as avg_price,tour_id from review_tour GROUP BY review_tour.tour_id  union select tours.tour_price=0 as avg_price,tour_id from tours where tour_id not in ( Select tour_id from review_tour GROUP BY review_tour.tour_id) and tours.tour_slug= '$tour_slug' ) as rev_tbl2";
         $this->db->join($sql_avg_star,'rev_tbl2.tour_id=tours.tour_id');
-
+        
         //join cột điểm trung bình review guide của tour
-        $sql_avg_star="(Select ROUND(AVG(rev_guide),0) as avg_guide,tour_id from review_tour GROUP BY review_tour.tour_id) as rev_tbl3";
+        $sql_avg_star="(Select ROUND(AVG(rev_guide),0) as avg_guide,tour_id from review_tour GROUP BY review_tour.tour_id  union select tours.tour_price=0 as avg_guide,tour_id from tours where tour_id not in ( Select tour_id from review_tour GROUP BY review_tour.tour_id) and tours.tour_slug='$tour_slug' ) as rev_tbl3";
         $this->db->join($sql_avg_star,'rev_tbl3.tour_id=tours.tour_id');
-
+        
         //join cột điểm trung bình review position của tour
-        $sql_avg_star="(Select ROUND(AVG(rev_position),0) as avg_position,tour_id from review_tour GROUP BY review_tour.tour_id) as rev_tbl4";
+        $sql_avg_star="(Select ROUND(AVG(rev_position),0) as avg_position,tour_id from review_tour GROUP BY review_tour.tour_id  union select tours.tour_price=0 as rev_position,tour_id from tours where tour_id not in ( Select tour_id from review_tour GROUP BY review_tour.tour_id) and tours.tour_slug= '$tour_slug' ) as rev_tbl4";
         $this->db->join($sql_avg_star,'rev_tbl4.tour_id=tours.tour_id');
         //join cột tổng số lượng review của tour
-        $sql_num_rev="(Select count(review_tour.tour_id) as num_rev,tour_id from review_tour GROUP BY review_tour.tour_id) as revs_num";
+        $sql_num_rev="(Select count(review_tour.tour_id) as num_rev,tour_id from review_tour GROUP BY review_tour.tour_id  union select tours.tour_price=0 as num_rev,tour_id from tours where tour_id not in ( Select tour_id from review_tour GROUP BY review_tour.tour_id) and tours.tour_slug= '$tour_slug' ) as revs_num";
         $this->db->join($sql_num_rev,'revs_num.tour_id=tours.tour_id');
         $this->db->where('tour_slug',$tour_slug);
         $result = $this->db->get("tours");
@@ -44,6 +44,7 @@ class Tours_model extends CI_Model
 
     public function getListHaveFilter($category,$rating,$minprice,$maxprice,$orderby,$page,$page_size)
     {
+        //$this->db->start_cache();
         //lọc bài viết theo category 
         if($category!=NULL){
             $arr_category=explode(',', $category);
@@ -53,8 +54,9 @@ class Tours_model extends CI_Model
         }
         
         //join cột điểm trung bình review của tour
-        $sql_avg_star="(Select ROUND(AVG(rev_star),0) as avg_rev,tour_id from review_tour GROUP BY review_tour.tour_id) as rev_tbl";
+        $sql_avg_star="(Select ROUND(AVG(rev_star),0) as avg_rev,tour_id from review_tour GROUP BY review_tour.tour_id UNION SELECT tours.tour_price=0 as avg_rev,tour_id FROM tours where tours.tour_id not in (select tour_id from (Select tour_id from review_tour GROUP BY review_tour.tour_id) as temp)) as rev_tbl";
         $this->db->join($sql_avg_star,'rev_tbl.tour_id=tours.tour_id');
+
         //lọc bài viết theo tiêu chí đánh giá
         if($rating!=NULL){
             $arr_rating=explode(',', $rating);
@@ -64,13 +66,17 @@ class Tours_model extends CI_Model
         }
         //lọc bài viết theo giá tour
         if($minprice!=NULL){
-            $this->db->where('tour_saving_price >=',$minprice);
-            $this->db->or_where('tour_price >=',$minprice);
+            $where="(tour_saving_price >=$minprice or tour_price >=$minprice)";
+            //$this->db->where('tour_saving_price >=',$minprice);
+            //$this->db->or_where('tour_price >=',$minprice);
+            $this->db->where($where);
         }
             
         if($maxprice!=NULL){
-            $this->db->where('tour_saving_price <=',$maxprice);
-            $this->db->or_where('tour_price >=',$maxprice);
+            $where="(tour_saving_price <=$maxprice or tour_price <=$maxprice)";
+            //$this->db->where('tour_saving_price <=',$maxprice);
+            //$this->db->or_where('tour_price <=',$maxprice);
+            $this->db->where($where);
         }
         
         if($orderby!=NULL){
@@ -88,14 +94,16 @@ class Tours_model extends CI_Model
 
         $this->db->limit($page_size,($page-1)*$page_size);
         //join cột tổng số lượng review của tour
-        $sql_num_rev="(Select count(review_tour.tour_id) as num_rev,tour_id from review_tour GROUP BY review_tour.tour_id) as revs_num";
+        $sql_num_rev="(Select count(review_tour.tour_id) as num_rev,tour_id from review_tour GROUP BY review_tour.tour_id UNION SELECT tours.tour_price=0 as avg_rev,tour_id FROM tours where tours.tour_id not in (select tour_id from (Select tour_id from review_tour GROUP BY review_tour.tour_id) as temp)) as revs_num";
         $this->db->join($sql_num_rev,'revs_num.tour_id=tours.tour_id');
         
         $query=$this->db->get("tours");
+        
         //trả kết quả về dạng mảng
         return $query->result_array();
     }
 
+    
 
     public function tours_count($category,$rating,$minprice,$maxprice)
     {
@@ -108,7 +116,7 @@ class Tours_model extends CI_Model
         }
         
         //join cột điểm trung bình review của tour
-        $sql_avg_star="(Select ROUND(AVG(rev_star),0) as avg_rev,tour_id from review_tour GROUP BY review_tour.tour_id) as rev_tbl";
+        $sql_avg_star="(Select ROUND(AVG(rev_star),0) as avg_rev,tour_id from review_tour GROUP BY review_tour.tour_id UNION SELECT tours.tour_price=0 as avg_rev,tour_id FROM tours where tours.tour_id not in (select tour_id from (Select tour_id from review_tour GROUP BY review_tour.tour_id) as temp)) as rev_tbl";
         $this->db->join($sql_avg_star,'rev_tbl.tour_id=tours.tour_id');
         //lọc bài viết theo tiêu chí đánh giá
         if($rating!=NULL){
@@ -122,10 +130,10 @@ class Tours_model extends CI_Model
             
         if($maxprice!=NULL){
             $this->db->where('tour_saving_price <=',$maxprice);
-            $this->db->or_where('tour_price >=',$maxprice);
+            $this->db->or_where('tour_price <=',$maxprice);
         }
         //join cột tổng số lượng review của tour
-        $sql_num_rev="(Select count(review_tour.tour_id) as num_rev,tour_id from review_tour GROUP BY review_tour.tour_id) as revs_num";
+        $sql_num_rev="(Select count(review_tour.tour_id) as num_rev,tour_id from review_tour GROUP BY review_tour.tour_id UNION SELECT tours.tour_price=0 as avg_rev,tour_id FROM tours where tours.tour_id not in (select tour_id from (Select tour_id from review_tour GROUP BY review_tour.tour_id) as temp)) as revs_num";
         $this->db->join($sql_num_rev,'revs_num.tour_id=tours.tour_id');
         $query=$this->db->get("tours");
         //đếm số lượng records

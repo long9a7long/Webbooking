@@ -4,6 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Tour extends CI_Controller {
     var $data = array();
     var $page_size=6;
+    var $cache_time_min=5;//minutes
     public function __construct(){
         parent::__construct();  
         
@@ -136,13 +137,81 @@ class Tour extends CI_Controller {
         $arr['total_record']=count($arr);
         $arr['tours_count']=$this->tours_model->tours_count($category,$rating,$minprice,$maxprice);
         $arr['page_size']=$this->page_size;
-        
         echo json_encode($arr);
     }
 
-    public function get_list_tour_destination(){
+    
+    public function submit_review_tour(){
+        $result = array();
+
         $this->load->model("tours_model");
-        echo json_encode($this->tours_model->get_list_tour_destination());
+        $tour_name  = $this->input->post('tour_name',TRUE);
+        $name_review  = $this->input->post('name_review',TRUE);
+        $lastname_review  = $this->input->post('lastname_review',TRUE);
+        $email_review  = $this->input->post('email_review',TRUE);
+        $position_review = $this->input->post('position_review',TRUE);
+        $guide_review = $this->input->post('guide_review',TRUE);
+        $price_review = $this->input->post('price_review',TRUE);
+        $quality_review =$this->input->post('quality_review',TRUE);
+        $review_text = $this->input->post('review_text',TRUE);
+        //$verify_review  = $this->input->post('verify_review',TRUE);
+
+        if(trim($name_review) == '') {
+            $result['status'] = 0;
+            $result['message'] = '<div class="error_message">You must enter your Name.</div>';
+        } else if(trim($lastname_review ) == '') {
+            $result['status'] = 0;
+            $result['message'] = '<div class="error_message">You must enter your Last name.</div>';
+            
+        } else if(trim($email_review) == '') {
+            $result['status'] = 0;
+            $result['message'] = '<div class="error_message">Please enter a valid email address.</div>';
+            
+        } else if(!isEmail($email_review)) {
+            $result['status'] = 0;
+            $result['message'] = '<div class="error_message">You have enter an invalid e-mail address, try again.</div>';
+            
+        } else if(trim($position_review ) == '') {
+            $result['status'] = 0;
+            $result['message'] = '<div class="error_message">Please rate Position.</div>';
+            
+        } else if(trim($guide_review ) == '') {
+            $result['status'] = 0;
+            $result['message'] = '<div class="error_message">Please rate Tourist Guide.</div>';
+            
+        } else if(trim($price_review ) == '') {
+            $result['status'] = 0;
+            $result['message'] = '<div class="error_message">Please rate Tour price.</div>';
+            
+        } else if(trim($quality_review ) == '') {
+            $result['status'] = 0;
+            $result['message'] = '<div class="error_message">Please rate Quality.</div>';
+            
+        } else if(trim($review_text) == '') {
+            $result['status'] = 0;
+            $result['message'] = '<div class="error_message">Please enter your review.</div>';
+            
+        } else if(!isset($verify_review) || trim($verify_review) == '') {
+            $result['status'] = 0;
+            $result['message'] = '<div class="error_message"> Please enter the verification number.</div>';
+            
+        }
+        //  else if(trim($verify_review) != '4') {
+        //     echo '<div class="error_message">The verification number you entered is incorrect.</div>';
+        //     exit();
+        // }
+        else{
+            if(get_magic_quotes_gpc()) {
+                $review_text = stripslashes($review_text);
+            }
+            $result['status'] = 1;
+            $result['message'] = '<div class="error_message">Your review aready sent! Tks for review!!</div>';
+        }
+        
+        // echo "<pre>";
+        // print_r($data);
+        // echo "</pre>";
+        echo json_encode($result);
     }
 
 }

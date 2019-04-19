@@ -15,12 +15,12 @@
 						<div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
-									<input name="name_review" id="name_review" type="text" placeholder="Tên của bạn" class="form-control">
+									<input name="name_review" id="name_review" type="text" placeholder="Tên của bạn" value="" class="form-control"> 
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<input name="lastname_review" id="lastname_review" type="text" placeholder="Họ và tên lót" class="form-control">
+									<input name="date_get_tour" id="date_get_tour" data-date-format="dd/mm/yyyy" type="text" placeholder="Ngày đi tour" class="form-control rev-date-pick">
 								</div>
 							</div>
 						</div>

@@ -195,8 +195,14 @@ function show_list_tours(data) {
 				'<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip">'+
 				'<span class="tooltip-back">Add to wishlist</span>'+
 				'</span></a></div>');
+			let start_date="Hàng ngày";
+			if(data[i].start_date!=null){
+				start_date=data[i].start_date;
+			}
+
 			col4.append('<div class="img_list">'+
 							'<a href="'+base_url+'/tour/detail/'+data[i].tour_slug+'"><img data-src="'+data[i].tour_thumnail+'" alt="'+data[i].tour_name+'" class="lazyload">'+
+							'<div class="short_info"><i class="icon_set_1_icon-53"></i>'+start_date+' </div>'+
 							'</a>'+
 						'</div>');
 

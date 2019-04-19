@@ -79,34 +79,55 @@ jQuery(document).ready(function(){
 		let action = base_url+"/tour/submit_review_tour";
 
 		$("#message-review").slideUp(750,function() {
-		$('#message-review').hide();
+			$('#message-review').hide();
+			
+			$('#submit-review')
+				.after('<i class="icon-spin4 animate-spin loader"></i>')
+				.attr('disabled','disabled');
+			let validate = validate_review_tour(
+				$('#name_review').val(),
+				$('#email_review').val(),
+				$('#position_review').val(),
+				$('#guide_review').val(),
+				$('#price_review').val(),
+				$('#quality_review').val(),
+				$('#review_text').val()
+			);
+
+			if(validate.match('success') != null){
+				let date_get_tour= new Date($('#date_get_tour').datepicker('getDate'));
+				let string_date=date_get_tour.getFullYear()+'-'+date_get_tour.getMonth()+'-'+date_get_tour.getDate();
+				$.post(action, {
+					tour_id: $('#tour_id').val(),
+					name_review: $('#name_review').val(),
+					date_get_tour: string_date,
+					email_review: $('#email_review').val(),
+					position_review: $('#position_review').val(),
+					guide_review: $('#guide_review').val(),
+					price_review: $('#price_review').val(),
+					quality_review: $('#quality_review').val(),
+					review_text: $('#review_text').val(),
+					
+				},
+				
+					function(data){
+						let json_data=$.parseJSON(data);
+						document.getElementById('message-review').innerHTML = json_data['message'];
+						$('#message-review').slideDown('slow');
+						$('#review_tour .loader').fadeOut('slow',function(){$(this).remove()});
+						$('#submit-review').removeAttr('disabled');
+						if(json_data['status']) $('#review_tour').slideUp('slow');
 		
-		$('#submit-review')
-			.after('<i class="icon-spin4 animate-spin loader"></i>')
-			.attr('disabled','disabled');
-		
-		$.post(action, {
-			tour_name: $('#tour_name').val(),
-			name_review: $('#name_review').val(),
-			lastname_review: $('#lastname_review').val(),
-			email_review: $('#email_review').val(),
-			position_review: $('#position_review').val(),
-			guide_review: $('#guide_review').val(),
-			price_review: $('#price_review').val(),
-			quality_review: $('#quality_review').val(),
-			review_text: $('#review_text').val(),
-			verify_review: $('#verify_review').val()
-		},
-		
-			function(data){
-				document.getElementById('message-review').innerHTML = data;
+					}
+				);
+			}
+			else{
+				document.getElementById('message-review').innerHTML = validate;
 				$('#message-review').slideDown('slow');
 				$('#review_tour .loader').fadeOut('slow',function(){$(this).remove()});
 				$('#submit-review').removeAttr('disabled');
-				if(data.match('success') != null) $('#review_tour').slideUp('slow');
-
 			}
-		);
+		
 
 		});
 
@@ -116,6 +137,56 @@ jQuery(document).ready(function(){
 
 });
 
+function validate_review_tour(
+								name_review,
+								email_review,
+								position_review,
+								guide_review,
+								price_review,
+								quality_review,
+								review_text)
+{
+	let result="";
+	if(name_review.trim() == '') {
+		result = '<div class="error_message">Bạn phải nhập tên của bạn.</div>';
+	}else if(email_review.trim() == '') {
+		result = '<div class="error_message">Vui lòng nhập một địa chỉ email hợp lệ.</div>';
+		
+	} else if(!isEmail(email_review)) {
+		result = '<div class="error_message">Bạn đã nhập một địa chỉ email không hợp lệ, hãy thử lại.</div>';	
+	} else if(position_review.trim() == '') {
+		result = '<div class="error_message">Vui lòng đánh giá địa điểm.</div>';
+		
+	} else if(guide_review.trim() == '') {
+		result = '<div class="error_message">Vui lòng đánh giá hướng dẫn viên du lịch.</div>';
+		
+	} else if(price_review.trim() == '') {
+		result = '<div class="error_message">Vui lòng đánh giá giá tour.</div>';
+		
+	} else if(quality_review.trim() == '') {
+		result = '<div class="error_message">Vui lòng đánh giá chất lượng.</div>';
+		
+	} else if(review_text.trim() == '') {
+		result = '<div class="error_message">Vui lòng nhập đánh giá của bạn.</div>';
+	}
+	else{
+		// Success message
+		result="<div id='success_page' style='padding:20px 0'>"+
+			+"<strong >Email Sent.</strong>"+
+			+"Thank you <strong>$name_review</strong>,<br> your review has been submitted."+
+			+"</div>";
+	}
+	return result;
+}
+
+function isEmail(email){
+	let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	if (re.test(email)) {
+		return true;
+	} else {
+		return false;
+	}
+}
 // Jquery validate review hotel
 jQuery(document).ready(function(){
 

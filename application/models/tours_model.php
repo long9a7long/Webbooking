@@ -103,7 +103,65 @@ class Tours_model extends CI_Model
         return $query->result_array();
     }
 
-    
+    public function get_list_convenient_tour($tour_id){
+        $this->db->join('convenient_tour','list_convenient_tour.conv_id=convenient_tour.conv_id');
+        $this->db->where('tour_id',$tour_id);
+        
+        $query=$this->db->get("list_convenient_tour");
+        //trả kết quả về dạng mảng
+        return $query->result_array();
+    }
+
+    public function get_price_tour($tour_id){
+        $this->db->where('tour_id',$tour_id);
+        
+        $query=$this->db->get("list_price_tour");
+        //trả kết quả về dạng mảng
+        return $query->row();
+    }
+
+    public function add_review_tour($tour_id,$name_review,$date_get_tour,$email_review,$position_review,$guide_review,$price_review,$quality_review,$review_text){
+        $rev_star=0;
+        $i=0;
+        if($position_review!=0){
+            $rev_star+=$position_review;
+            $i++;
+        }
+        if($guide_review!=0){
+            $rev_star+=$guide_review;
+            $i++;
+        }
+        if($price_review!=0){
+            $rev_star+=$price_review;
+            $i++;
+        }
+        if($quality_review!=0){
+            $rev_star+=$quality_review;
+            $i++;
+        }
+
+        //số điểm đánh giá trung bình
+        $rev_star=round($rev_star/$i);
+
+        //dữ liệu để insert
+        $data = array(
+            'tour_id' => $tour_id ,
+            'rev_name' => $name_review,
+            'rev_email' => $email_review,
+            'date_get_tour' => $date_get_tour,
+            'rev_content' => $review_text,
+            'rev_quality' => $quality_review,
+            'rev_price' => $price_review,
+            'rev_guide' => $guide_review,
+            'rev_position' => $position_review,
+            'rev_star' => $rev_star
+        );
+        $this->db->query('ALTER TABLE `review_tour` AUTO_INCREMENT=1');
+        //câu truy vấn insert
+        $this->db->insert('review_tour', $data);
+        
+        return TRUE;
+    }
 
     public function tours_count($category,$rating,$minprice,$maxprice)
     {

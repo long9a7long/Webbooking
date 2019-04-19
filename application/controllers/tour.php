@@ -10,6 +10,11 @@ class Tour extends CI_Controller {
         
     } 
 
+    /*
+    //
+    //Khu vực load view
+    //
+    */
 	public function index()
 	{
         $this -> data['title'] = "Booking Tour";
@@ -76,7 +81,9 @@ class Tour extends CI_Controller {
         else{
             $this ->data['info_tour']=$info_tour;
             //get list review of tour by tour id
+            $this ->data['list_convenient']=$this->tours_model->get_list_convenient_tour($info_tour->tour_id);
             $this ->data['reviews_tour']=$this->tours_model->getListReviewByID($info_tour->tour_id);
+            $this ->data['prices_tour']=$this->tours_model->get_price_tour($info_tour->tour_id);
             $this->load->view("default/template",$this ->data);
         }
             
@@ -117,7 +124,11 @@ class Tour extends CI_Controller {
         $this->load->view("default/template",$this ->data);
     }
 
-
+    /*
+    //
+    //Khu vực cho method ajax
+    //
+    */
 
     public function get_list_tour(){
         $this->load->model("tours_model");
@@ -137,17 +148,18 @@ class Tour extends CI_Controller {
         $arr['total_record']=count($arr);
         $arr['tours_count']=$this->tours_model->tours_count($category,$rating,$minprice,$maxprice);
         $arr['page_size']=$this->page_size;
+        
         echo json_encode($arr);
     }
 
     
     public function submit_review_tour(){
         $result = array();
-
         $this->load->model("tours_model");
-        $tour_name  = $this->input->post('tour_name',TRUE);
+
+        $tour_id  = $this->input->post('tour_id',TRUE);
         $name_review  = $this->input->post('name_review',TRUE);
-        $lastname_review  = $this->input->post('lastname_review',TRUE);
+        $date_get_tour  = $this->input->post('date_get_tour',TRUE);
         $email_review  = $this->input->post('email_review',TRUE);
         $position_review = $this->input->post('position_review',TRUE);
         $guide_review = $this->input->post('guide_review',TRUE);
@@ -155,63 +167,79 @@ class Tour extends CI_Controller {
         $quality_review =$this->input->post('quality_review',TRUE);
         $review_text = $this->input->post('review_text',TRUE);
         //$verify_review  = $this->input->post('verify_review',TRUE);
-
+        
         if(trim($name_review) == '') {
             $result['status'] = 0;
-            $result['message'] = '<div class="error_message">You must enter your Name.</div>';
-        } else if(trim($lastname_review ) == '') {
+            $result['message'] = '<div class="error_message">Bạn phải nhập tên của bạn.</div>';
+        }else if(trim($email_review) == '') {
             $result['status'] = 0;
-            $result['message'] = '<div class="error_message">You must enter your Last name.</div>';
+            $result['message'] = '<div class="error_message">Vui lòng nhập một địa chỉ email hợp lệ.</div>';
             
-        } else if(trim($email_review) == '') {
+        } else if(!$this->isEmail($email_review)) {
             $result['status'] = 0;
-            $result['message'] = '<div class="error_message">Please enter a valid email address.</div>';
-            
-        } else if(!isEmail($email_review)) {
+            $result['message'] = '<div class="error_message">Địa chỉ email bạn vừa nhập không hợp lệ, vui lòng nhập lại.</div>';
+        }else if(trim($position_review ) == '') {
             $result['status'] = 0;
-            $result['message'] = '<div class="error_message">You have enter an invalid e-mail address, try again.</div>';
-            
-        } else if(trim($position_review ) == '') {
-            $result['status'] = 0;
-            $result['message'] = '<div class="error_message">Please rate Position.</div>';
+            $result['message'] = '<div class="error_message">Vui lòng đánh giá vị trí.</div>';
             
         } else if(trim($guide_review ) == '') {
             $result['status'] = 0;
-            $result['message'] = '<div class="error_message">Please rate Tourist Guide.</div>';
+            $result['message'] = '<div class="error_message">Vui lòng đánh giá hướng dẫn viên du lịch.</div>';
             
         } else if(trim($price_review ) == '') {
             $result['status'] = 0;
-            $result['message'] = '<div class="error_message">Please rate Tour price.</div>';
+            $result['message'] = '<div class="error_message">Vui lòng đánh giá giá tour.</div>';
             
         } else if(trim($quality_review ) == '') {
             $result['status'] = 0;
-            $result['message'] = '<div class="error_message">Please rate Quality.</div>';
+            $result['message'] = '<div class="error_message">Vui lòng đánh giá chất lượng.</div>';
             
         } else if(trim($review_text) == '') {
             $result['status'] = 0;
-            $result['message'] = '<div class="error_message">Please enter your review.</div>';
+            $result['message'] = '<div class="error_message">Vui lòng nhập đánh giá của bạn.</div>';
             
-        } else if(!isset($verify_review) || trim($verify_review) == '') {
-            $result['status'] = 0;
-            $result['message'] = '<div class="error_message"> Please enter the verification number.</div>';
+        } //else if(!isset($verify_review) || trim($verify_review) == '') {
+        //     $result['status'] = 0;
+        //     $result['message'] = '<div class="error_message"> Vui lòng nhập số xác minh.</div>';
             
-        }
+        // }
         //  else if(trim($verify_review) != '4') {
         //     echo '<div class="error_message">The verification number you entered is incorrect.</div>';
         //     exit();
         // }
         else{
-            if(get_magic_quotes_gpc()) {
-                $review_text = stripslashes($review_text);
+            
+            if(!$this->tours_model->add_review_tour(trim($tour_id),
+                                                    trim($name_review),
+                                                    $date_get_tour,
+                                                    trim($email_review),
+                                                    (int)trim($position_review),
+                                                    (int)trim($guide_review),
+                                                    (int)trim($price_review),
+                                                    (int)trim($quality_review),
+                                                    trim($review_text)))
+            {
+                $result['status'] = 0;
+                $result['message']='<div class="error_message"><span class="icon_dislike" aria-hidden="true"></span> Có lỗi xảy ra, vui lòng thử lại sau!.</div>';
+            }else{
+                $result['status'] = 1;
+                $result['message']="<div id='success_page' style='padding:20px 0'>";
+                $result['message'].="Cảm ơn <strong>$name_review</strong>,<br> bản đánh giá của bạn đã được gửi thành công!";
+                $result['message'].="</div>";
             }
-            $result['status'] = 1;
-            $result['message'] = '<div class="error_message">Your review aready sent! Tks for review!!</div>';
+            
         }
-        
-        // echo "<pre>";
-        // print_r($data);
-        // echo "</pre>";
+
         echo json_encode($result);
     }
 
+    /*
+    //
+    //Khu vực cho method custom
+    //
+    */
+    function isEmail($email_review ) {
+        return(preg_match("/^[-_.[:alnum:]]+@((([[:alnum:]]|[[:alnum:]][[:alnum:]-]*[[:alnum:]])\.)+(ad|ae|aero|af|ag|ai|al|am|an|ao|aq|ar|arpa|as|at|au|aw|az|ba|bb|bd|be|bf|bg|bh|bi|biz|bj|bm|bn|bo|br|bs|bt|bv|bw|by|bz|ca|cc|cd|cf|cg|ch|ci|ck|cl|cm|cn|co|com|coop|cr|cs|cu|cv|cx|cy|cz|de|dj|dk|dm|do|dz|ec|edu|ee|eg|eh|er|es|et|eu|fi|fj|fk|fm|fo|fr|ga|gb|gd|ge|gf|gh|gi|gl|gm|gn|gov|gp|gq|gr|gs|gt|gu|gw|gy|hk|hm|hn|hr|ht|hu|id|ie|il|in|info|int|io|iq|ir|is|it|jm|jo|jp|ke|kg|kh|ki|km|kn|kp|kr|kw|ky|kz|la|lb|lc|li|lk|lr|ls|lt|lu|lv|ly|ma|mc|md|me|mg|mh|mil|mk|ml|mm|mn|mo|mp|mq|mr|ms|mt|mu|museum|mv|mw|mx|my|mz|na|name|nc|ne|net|nf|ng|ni|nl|no|np|nr|nt|nu|nz|om|org|pa|pe|pf|pg|ph|pk|pl|pm|pn|pr|pro|ps|pt|pw|py|qa|re|ro|ru|rw|sa|sb|sc|sd|se|sg|sh|si|sj|sk|sl|sm|sn|so|sr|st|su|sv|sy|sz|tc|td|tf|tg|th|tj|tk|tm|tn|to|tp|tr|tt|tv|tw|tz|ua|ug|uk|um|us|uy|uz|va|vc|ve|vg|vi|vn|vu|wf|ws|ye|yt|yu|za|zm|zw)$|(([0-9][0-9]?|[0-1][0-9][0-9]|[2][0-4][0-9]|[2][5][0-5])\.){3}([0-9][0-9]?|[0-1][0-9][0-9]|[2][0-4][0-9]|[2][5][0-5]))$/i",$email_review ));
+    }
+    
 }

@@ -21,9 +21,14 @@
 				<div class="col-lg-8" id="single_tour_desc">
 					<div id="single_tour_feat">
 						<ul>
-							<li><i class="icon_set_1_icon-83"></i><?php if($info_tour->tour_duration!=NULL) echo $info_tour->tour_duration;?></li>
-							<li><i class="icon_set_1_icon-82"></i><?php if($info_tour->tour_hits!=NULL) echo $info_tour->tour_hits;?> lượt xem</li>
-							<li><i class="icon_set_1_icon-29"></i><?php if($info_tour->tour_availability!=NULL) echo $info_tour->tour_availability;?> người</li>
+							<?php if($info_tour->tour_duration!=NULL){ ?>
+							<li><i class="icon_set_1_icon-83"></i>
+								<?php echo $info_tour->tour_duration;?>
+							</li><?php } ?>
+							<?php if($info_tour->tour_hits!=NULL){ ?>
+							<li><i class="icon_set_1_icon-82"></i><?php echo $info_tour->tour_hits;?> lượt xem</li><?php } ?>
+							<?php if($info_tour->tour_availability!=NULL){ ?>
+							<li><i class="icon_set_1_icon-29"></i><?php echo $info_tour->tour_availability;?> người</li><?php } ?>
 						</ul>
 					</div>
 
@@ -45,7 +50,7 @@
 									data-medium="<?php echo $item; ?>" 
 									data-large="<?php echo $item; ?>" 
 									data-retina="<?php echo $item; ?>">
-								</div>';
+								</div>
 							<?php } ?>
 							
 						</div>
@@ -76,7 +81,69 @@
 							<h3>Lịch trình</h3>
 						</div>
 						<div class="col-lg-9">
+						<?php 
+						if($info_tour->start_date!=NULL){
+							$start_date = new DateTime($info_tour->start_date);
+							echo '<h4>Xuất phát: '.$start_date->format('d/m/Y').'</h4>';
+						}  ?>
 						<?php echo $info_tour->tour_schedule;?>
+						</div>
+					</div>
+					<hr>
+					<div class="row">
+						<div class="col-lg-3">
+							<h3>Dịch vụ đi kèm</h3>
+						</div>
+						<div class="col-lg-9">
+							<ul style="padding: 0;margin: 0;list-style: none;display: -webkit-box;display: -moz-box;display: -ms-flexbox;display: -webkit-flex;display: flex;-webkit-flex-flow: row wrap;justify-content: space-around;
+">
+						<?php 
+						foreach($list_convenient as $convenient){
+							echo '<li>'.$convenient['conv_icon'].$convenient['conv_name'].'</li>';
+						}
+						?>
+							</ul>
+						</div>
+					</div>
+					<hr>
+					<div class="row">
+						<ul class="nav nav-tabs" id="myTab" role="tablist">
+							<li class="nav-item">
+								<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><h3>Bảng giá</h3></a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"><h3>Chính sách</h3></a>
+							</li>
+						</ul>
+					
+						<div class="tab-content" id="myTabContent">
+							<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+								<table class="table">
+									<thead>
+									<tr>
+										<th>Loại giá/ Độ tuổi</th>
+										<th>Người lớn(trên 11 tuổi)</th>
+										<th>Trẻ em(từ 6 đến 10 tuổi)</th>
+										<th>Trẻ nhỏ(dưới 5 tuổi)</th>
+									</tr>
+									</thead>
+									<tbody>
+									<tr>
+										<td>Giá</td>
+										<td><?php echo number_format($prices_tour->price_adult); ?><sup>đ</sup></td>
+										<td><?php echo number_format($prices_tour->price_children); ?><sup>đ</sup></td>
+										<td><?php echo number_format($prices_tour->price_child); ?><sup>đ</sup></td>
+									</tr>
+									</tbody>
+								</table>
+						
+							</div>
+							<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+								<?php if($info_tour->tour_policy==NULL)
+									echo "Tour này chưa có chính sách gì đặc biệt.";
+								else
+									echo $info_tour->tour_policy;?>
+							</div>
 						</div>
 					</div>
 					<hr>
@@ -214,7 +281,7 @@
 								<div class="col-sm-6">
 									<div class="form-group">
 										<label><i class="icon-calendar-7"></i> Select a date</label>
-										<input class="date-pick form-control" data-date-format="M d, D" type="text">
+										<input class="date-pick form-control" data-date-format="dd/mm/yyyy" type="text">
 									</div>
 								</div>
 								<div class="col-sm-6">

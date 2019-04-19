@@ -284,7 +284,8 @@ $(document).ready(function ($) {
 	// 	autoplay: false
 	// });
 });
-$('input.date-pick').datepicker('setDate', 'today');
+$('input.date-pick').datepicker('setDate','today');
+$('input.rev-date-pick').datepicker();
 $('.carousel-thumbs-2').owlCarousel({
 	loop:false,
 	margin:5,
@@ -304,7 +305,7 @@ $('.carousel-thumbs-2').owlCarousel({
 	}
 });
 
-//lấy numwords từ từ chuối str
+//lấy numwords chữ từ chuối str
 function getWords(str,numwords) {
     return str.split(/\s+/).slice(0,numwords).join(" ");
 }

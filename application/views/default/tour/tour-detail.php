@@ -277,34 +277,47 @@
 					<div class="theiaStickySidebar">
 						<div class="box_style_1 expose" id="booking_box">
 							<h3 class="inner">- Booking -</h3>
+							<input type="hidden" value="<?php echo $info_tour->tour_name; ?>" id="tour_name">
+							<p id="error-message"></p>
 							<div class="row">
 								<div class="col-sm-6">
 									<div class="form-group">
-										<label><i class="icon-calendar-7"></i> Select a date</label>
-										<input class="date-pick form-control" data-date-format="dd/mm/yyyy" type="text">
+										<label><i class="icon-calendar-7"></i> Chọn ngày đi<img src="" alt="" sizes="" srcset=""></label>
+										<input class="date-pick form-control" data-date-format="dd/mm/yyyy" type="text" id="date_start">
 									</div>
 								</div>
 								<div class="col-sm-6">
 									<div class="form-group">
-										<label><i class=" icon-clock"></i> Time</label>
-										<input class="time-pick form-control" value="12:00 AM" type="text">
+										<label><i class=" icon-clock"></i> Thời gian</label>
+										<input class="time-pick form-control" value="12:00 AM" type="text" id="time_start">
 									</div>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-6">
 									<div class="form-group">
-										<label>Adults</label>
+										<label>Người lớn</label>
 										<div class="numbers-row">
-											<input type="text" value="1" id="adults" class="qty2 form-control" name="quantity">
+											<input type="text" value="1" id="adults" class="qty2 form-control" name="num_adults">
 										</div>
 									</div>
 								</div>
 								<div class="col-6">
 									<div class="form-group">
-										<label>Children</label>
+										<label>Trẻ em</label>
 										<div class="numbers-row">
-											<input type="text" value="0" id="children" class="qty2 form-control" name="quantity">
+											<input type="text" value="0" id="childrens" class="qty2 form-control" name="num_childrens">
+										</div>
+									</div>
+								</div>
+								
+							</div>
+							<div class="row">
+								<div class="col-6">
+									<div class="form-group">
+										<label>Trẻ nhỏ</label>
+										<div class="numbers-row">
+											<input type="text" value="0" id="childs" class="qty2 form-control" name="num_childs">
 										</div>
 									</div>
 								</div>
@@ -314,39 +327,40 @@
 								<tbody>
 									<tr>
 										<td>
-											Adults
+											Người lớn
 										</td>
 										<td class="text-right">
-											2
+											<span id="num_adults" data-price="<?php echo $prices_tour->price_adult; ?>">1</span> * <span><?php echo number_format($prices_tour->price_adult); ?><sup>đ</sup></span>
 										</td>
 									</tr>
 									<tr>
 										<td>
-											Children
+											Trẻ em
 										</td>
 										<td class="text-right">
-											0
+											<span id="num_childrens" data-price="<?php echo $prices_tour->price_children; ?>">0</span> * <span><?php echo number_format($prices_tour->price_children); ?><sup>đ</sup></span>
 										</td>
 									</tr>
 									<tr>
 										<td>
-											Total amount
+											Trẻ con
 										</td>
 										<td class="text-right">
-											3x $52
+										<span id="num_childs" data-price="<?php echo $prices_tour->price_child; ?>">0</span> * <span><?php echo number_format($prices_tour->price_child); ?><sup>đ</sup></span>
 										</td>
 									</tr>
+									
 									<tr class="total">
 										<td>
-											Total cost
+											Tổng tiền
 										</td>
-										<td class="text-right">
-											$154
+										<td class="text-right" id="total_cost">
+											<?php echo number_format($prices_tour->price_adult); ?><sup>đ</sup>
 										</td>
 									</tr>
 								</tbody>
 							</table>
-							<a class="btn_full" href="cart">Book now</a>
+							<a class="btn_full" href="cart" id="btn_booking">Book now</a>
 							<a class="btn_full_outline" href="#"><i class=" icon-heart"></i> Add to whislist</a>
 						</div>
 						<!--/box_style_1 -->

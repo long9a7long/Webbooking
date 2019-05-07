@@ -160,20 +160,28 @@ $(function () {
 	$(".numbers-row").append('<div class="inc button_inc">+</div><div class="dec button_inc">-</div>');
 	$(".button_inc").on("click", function () {
 
-		var $button = $(this);
-		var oldValue = $button.parent().find("input").val();
-
+		let $button = $(this);
+		let oldValue = $button.parent().find("input").val();
+		let newVal=0;
 		if ($button.text() == "+") {
-			var newVal = parseFloat(oldValue) + 1;
+			if (oldValue >= 20) {
+				newVal = parseFloat(oldValue);
+			}else{
+				newVal = parseFloat(oldValue) + 1;
+			}
+			
 		} else {
 			// Don't allow decrementing below zero
 			if (oldValue > 1) {
-				var newVal = parseFloat(oldValue) - 1;
+				newVal = parseFloat(oldValue) - 1;
 			} else {
 				newVal = 0;
 			}
 		}
 		$button.parent().find("input").val(newVal);
+		let target=$button.parent().find("input").attr('id');
+		change_value_booking_form(target,newVal);
+
 	});
 });
 
@@ -284,7 +292,10 @@ $(document).ready(function ($) {
 	// 	autoplay: false
 	// });
 });
-$('input.date-pick').datepicker('setDate','today');
+$('input.date-pick').datepicker({
+	setDate: "today",
+    startDate: "today"
+});
 $('input.rev-date-pick').datepicker();
 $('.carousel-thumbs-2').owlCarousel({
 	loop:false,

@@ -281,38 +281,44 @@ jQuery(document).ready(function(){
 
 	$('#review_restaurant').submit(function(){
 
-		var action = $(this).attr('action');
+		let action = base_url+"/restaurant/submit_review_restaurant";
 
 		$("#message-review").slideUp(750,function() {
-		$('#message-review').hide();
-		
-		$('#submit-review')
-			.after('<i class="icon-spin4 animate-spin loader"></i>')
-			.attr('disabled','disabled');
+			$('#message-review').hide();
+			
+			$('#submit-review')
+					.after('<i class="icon-spin4 animate-spin loader"></i>')
+					.attr('disabled','disabled');
+				let validate = validate_review_restaurant(
+					$('#name_review').val(),
+					$('#email_review').val(),
+					$('#view_review').val(),
+					$('#waiter_review').val(),
+					$('#quality_review').val(),
+					$('#review_text').val()
+				);
+			if(validate.match('success')!=null){
+				$.post(action, {
+					restaurant_id:$('#restaurant_id').val(),
+					name_review: $('#name_review').val(),
+					email_review: $('#email_review').val(),
+					view_review:$('#view_review').val(),
+					waiter_review:$('#waiter_review'),
+					quality_review: $('#quality_review').val(),
+					review_text: $('#review_text').val(),
+				},
+				
+				function(data){
+					let json_data=$.parseJSON(data);
+					document.getElementById('message-review').innerHTML = json_data['message'];
+					$('#message-review').slideDown('slow');
+					$('#review_restaurant .loader').fadeOut('slow',function(){$(this).remove()});
+					$('#submit-review').removeAttr('disabled');
+					if(json_data['status']) $('#review_restaurant').slideUp('slow');
 
-		$.post(action, {
-			restaurant_name: $('#restaurant_name').val(),
-			name_review: $('#name_review').val(),
-			lastname_review: $('#lastname_review').val(),
-			email_review: $('#email_review').val(),
-			position_review: $('#position_review').val(),
-			service_review: $('#service_review').val(),
-			price_review: $('#price_review').val(),
-			quality_review: $('#quality_review').val(),
-			review_text: $('#review_text').val(),
-			verify_review: $('#verify_review').val()
-		},
-		
-			function(data){
-				document.getElementById('message-review').innerHTML = data;
-				$('#message-review').slideDown('slow');
-				$('#review_restaurant .loader').fadeOut('slow',function(){$(this).remove()});
-				$('#submit-review').removeAttr('disabled');
-				if(data.match('success') != null) $('#review_restaurant').slideUp('slow');
-
+				}
+				);
 			}
-		);
-
 		});
 
 		return false;
@@ -321,3 +327,40 @@ jQuery(document).ready(function(){
 
 });
   /* ]]> */
+  function validate_review_restaurant(
+										name_review,
+										email_review,
+										view_review,
+										waiter_review,
+										quality_review,
+										review_text)
+	{
+	let result="";
+	if(name_review.trim() == '') {
+	result = '<div class="error_message">Bạn phải nhập tên của bạn.</div>';
+	}else if(email_review.trim() == '') {
+	result = '<div class="error_message">Vui lòng nhập địa chỉ email liên hệ của bạn.</div>';
+
+	} else if(!isEmail(email_review)) {
+	result = '<div class="error_message">Bạn đã nhập một địa chỉ email không hợp lệ, hãy thử lại.</div>';	
+	} else if(view_review.trim() == '') {
+	result = '<div class="error_message">Vui lòng đánh giá cảnh của nhà hàng.</div>';
+
+	} else if(waiter_review.trim() == '') {
+	result = '<div class="error_message">Vui lòng đánh giá nhân viên phục vụ nhà hàng.</div>';
+
+	} else if(quality_review.trim() == '') {
+	result = '<div class="error_message">Vui lòng đánh giá chất lượng.</div>';
+
+	} else if(review_text.trim() == '') {
+	result = '<div class="error_message">Vui lòng nhập đánh giá của bạn.</div>';
+	}
+	else{
+	// Success message
+	result="<div id='success_page' style='padding:20px 0'>"+
+	+"<strong >Email Sent.</strong>"+
+	+"Thank you <strong>$name_review</strong>,<br> your review has been submitted."+
+	+"</div>";
+	}
+	return result;
+	}

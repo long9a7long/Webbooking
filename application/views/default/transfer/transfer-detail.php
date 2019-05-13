@@ -118,7 +118,7 @@
 							<!-- End row -->
 							<hr>
 							<div class="review_strip_single">
-								<img src="img/avatar1.jpg" alt="Image" class="rounded-circle">
+								<img data-src="<?php echo base_url(); ?>assets/default/img/avatar1.jpg" alt="Image" class="rounded-circle lazyload">
 								<small> - 10 March 2015 -</small>
 								<h4>Jhon Doe</h4>
 								<p>
@@ -131,7 +131,7 @@
 							<!-- End review strip -->
 
 							<div class="review_strip_single">
-								<img src="img/avatar3.jpg" alt="Image" class="rounded-circle">
+								<img data-src="<?php echo base_url(); ?>assets/default/img/avatar3.jpg" alt="Image" class="rounded-circle lazyload">
 								<small> - 10 March 2015 -</small>
 								<h4>Jhon Doe</h4>
 								<p>
@@ -144,7 +144,7 @@
 							<!-- End review strip -->
 
 							<div class="review_strip_single last">
-								<img src="img/avatar2.jpg" alt="Image" class="rounded-circle">
+								<img data-src="<?php echo base_url(); ?>assets/default/img/avatar2.jpg" alt="Image" class="rounded-circle lazyload">
 								<small> - 10 March 2015 -</small>
 								<h4>Jhon Doe</h4>
 								<p>

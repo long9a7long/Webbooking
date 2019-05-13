@@ -13,7 +13,11 @@
 		<!-- Position -->
 
 		<div class="container margin_60">
-
+		<input type="hidden" name="querystring_filter" id="querystring_filter" value="">
+		<div class="row-filter" id="row-filter">
+			<span style="margin-right: 20px;">Your filter:</span>
+			<!-- Filter items here -->
+		</div>
 			<div class="row">
 				<aside class="col-lg-3">
 
@@ -29,35 +33,35 @@
 								<ul>
 									<li>
 										<label>
-											<input type="checkbox"><span class="rating">
+											<input type="checkbox" class="filter-rating" data-id="5"><span class="rating">
 											<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i>
 											</span>
 										</label>
 									</li>
 									<li>
 										<label>
-											<input type="checkbox"><span class="rating">
+											<input type="checkbox" class="filter-rating" data-id="4"><span class="rating">
 											<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i>
 											</span>
 										</label>
 									</li>
 									<li>
 										<label>
-											<input type="checkbox"><span class="rating">
+											<input type="checkbox" class="filter-rating" data-id="3"><span class="rating">
 											<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i>
 											</span>
 										</label>
 									</li>
 									<li>
 										<label>
-											<input type="checkbox"><span class="rating">
+											<input type="checkbox" class="filter-rating" data-id="2"><span class="rating">
 											<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i><i class="icon-smile"></i>
 											</span>
 										</label>
 									</li>
 									<li>
 										<label>
-											<input type="checkbox"><span class="rating">
+											<input type="checkbox" class="filter-rating" data-id="1"><span class="rating">
 											<i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i><i class="icon-smile"></i><i class="icon-smile"></i>
 											</span>
 										</label>
@@ -65,28 +69,19 @@
 								</ul>
 							</div>
 							<div class="filter_type">
-								<h6>Facility</h6>
+								<h6>Convenient</h6>
 								<ul>
 									<li>
 										<label>
-											<input type="checkbox">Pet allowed
+										<input type="checkbox" class="filter-convenient" data-id="6"><span class="convenient">Điều hòa không khí</span>
 										</label>
 									</li>
 									<li>
 										<label>
-											<input type="checkbox">Groups allowed
+											<input type="checkbox" class="filter-convenient" data-id="7"><span class="convenient">WiFi</span>
 										</label>
 									</li>
-									<li>
-										<label>
-											<input type="checkbox">Tour guides
-										</label>
-									</li>
-									<li>
-										<label>
-											<input type="checkbox">Access for disabled
-										</label>
-									</li>
+									
 								</ul>
 							</div>
 						</div>
@@ -125,313 +120,17 @@
 								</div>
 							</div>
 							<div class="col-md-6 col-sm-4 d-none d-sm-block text-right">
-								<a href="all_transfer_grid.html" class="bt_filters"><i class="icon-th"></i></a> <a href="#" class="bt_filters"><i class=" icon-list"></i></a>
+								<a href="<?php echo base_url(); ?>transfer/?view=2" class="bt_filters"><i class="icon-th"></i></a> <a href="<?php echo base_url(); ?>transfer/?view=1" class="bt_filters"><i class=" icon-list"></i></a>
 							</div>
 
 						</div>
 					</div>
 					<!--/tools -->
 
-					<div class="strip_all_tour_list wow fadeIn" data-wow-delay="0.1s">
-						<div class="row">
-							<div class="col-lg-4 col-md-4">
-								<div class="ribbon_3 popular"><span>Popular</span>
-								</div>
-								<div class="wishlist">
-									<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
-								</div>
-								<div class="img_list">
-									<a href="transfer/detail/abc"><img src="<?php echo base_url(); ?>assets/default/img/transfer_2.jpg" alt="Image">
-										<div class="short_info"></div>
-									</a>
-								</div>
-							</div>
-							<div class="col-lg-6 col-md-6">
-								<div class="tour_list_desc">
-									<div class="rating"><i class="icon-smile voted"></i><i class="icon-smile  voted"></i><i class="icon-smile  voted"></i><i class="icon-smile  voted"></i><i class="icon-smile"></i><small>(75)</small>
-									</div>
-									<h3><strong>Orly Airport</strong> shared</h3>
-									<p>Lorem ipsum dolor sit amet, quem convenire interesset ut vix, ad dicat sanctus detracto vis. Eos modus dolorum ex...</p>
-									<ul class="add_info">
-										<li>
-											<div class="tooltip_styled tooltip-effect-4">
-												<span class="tooltip-item"><i class="icon_set_1_icon-70"></i></span>
-												<div class="tooltip-content">
-													<h4>Passengers</h4> Up to 6 passengers.
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="tooltip_styled tooltip-effect-4">
-												<span class="tooltip-item"><i class="icon_set_1_icon-6"></i></span>
-												<div class="tooltip-content">
-													<h4>Pick up</h4> Hotel pick up or different place with an extra cost.
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="tooltip_styled tooltip-effect-4">
-												<span class="tooltip-item"><i class="icon_set_1_icon-13"></i></span>
-												<div class="tooltip-content">
-													<h4>Accessibility</h4> On request accessibility available.
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="tooltip_styled tooltip-effect-4">
-												<span class="tooltip-item"><i class="icon_set_1_icon-22"></i></span>
-												<div class="tooltip-content">
-													<h4>Pet allowed</h4> On request pet allowed.
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="tooltip_styled tooltip-effect-4">
-												<span class="tooltip-item"><i class="icon_set_1_icon-33"></i></span>
-												<div class="tooltip-content">
-													<h4>Baggage</h4> Large baggage drop available.
-												</div>
-											</div>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<div class="col-lg-2 col-md-2">
-								<div class="price_list">
-									<div><sup>$</sup>29*<span class="normal_price_list">$79</span><small>*From/Per person</small>
-										<p><a href="transfer/detail/abc" class="btn_1">Details</a>
-										</p>
-									</div>
-
-								</div>
-							</div>
-						</div>
-					</div>
+					<div id="list_transfer_list"></div>
 					<!--End strip -->
 
-					<div class="strip_all_tour_list wow fadeIn" data-wow-delay="0.1s">
-						<div class="row">
-							<div class="col-lg-4 col-md-4">
-								<div class="ribbon_3 popular"><span>Popular</span>
-								</div>
-								<div class="wishlist">
-									<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
-								</div>
-								<div class="img_list">
-									<a href="transfer/detail/abc"><img src="<?php echo base_url(); ?>assets/default/img/transfer_1.jpg" alt="Image">
-										<div class="short_info"></div>
-									</a>
-								</div>
-							</div>
-							<div class="col-lg-6 col-md-6">
-								<div class="tour_list_desc">
-									<div class="rating"><i class="icon-smile voted"></i><i class="icon-smile  voted"></i><i class="icon-smile  voted"></i><i class="icon-smile  voted"></i><i class="icon-smile"></i><small>(75)</small>
-									</div>
-									<h3><strong>Orly Airport</strong> private</h3>
-									<p>Lorem ipsum dolor sit amet, quem convenire interesset ut vix, ad dicat sanctus detracto vis. Eos modus dolorum ex...</p>
-									<ul class="add_info">
-										<li>
-											<div class="tooltip_styled tooltip-effect-4">
-												<span class="tooltip-item"><i class="icon_set_1_icon-70"></i></span>
-												<div class="tooltip-content">
-													<h4>Passengers</h4> Up to 3 passengers.
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="tooltip_styled tooltip-effect-4">
-												<span class="tooltip-item"><i class="icon_set_1_icon-6"></i></span>
-												<div class="tooltip-content">
-													<h4>Pick up</h4> Hotel pick up or different place with an extra cost.
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="tooltip_styled tooltip-effect-4">
-												<span class="tooltip-item"><i class="icon_set_1_icon-13"></i></span>
-												<div class="tooltip-content">
-													<h4>Accessibility</h4> On request accessibility available.
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="tooltip_styled tooltip-effect-4">
-												<span class="tooltip-item"><i class="icon_set_1_icon-22"></i></span>
-												<div class="tooltip-content">
-													<h4>Pet allowed</h4> On request pet allowed.
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="tooltip_styled tooltip-effect-4">
-												<span class="tooltip-item"><i class="icon_set_1_icon-33"></i></span>
-												<div class="tooltip-content">
-													<h4>Baggage</h4> Large baggage drop available.
-												</div>
-											</div>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<div class="col-lg-2 col-md-2">
-								<div class="price_list">
-									<div><sup>$</sup>59*<span class="normal_price_list">$99</span><small>*From/Per person</small>
-										<p><a href="transfer/detail/abc" class="btn_1">Details</a>
-										</p>
-									</div>
-
-								</div>
-							</div>
-						</div>
-					</div>
-					<!--End strip -->
-
-					<div class="strip_all_tour_list wow fadeIn" data-wow-delay="0.1s">
-						<div class="row">
-							<div class="col-lg-4 col-md-4">
-								<div class="ribbon_3"><span>Top rated</span>
-								</div>
-								<div class="wishlist">
-									<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
-								</div>
-								<div class="img_list">
-									<a href="transfer/detail/abc"><img src="<?php echo base_url(); ?>assets/default/img/transfer_3.jpg" alt="Image">
-										<div class="short_info"></div>
-									</a>
-								</div>
-							</div>
-							<div class="col-lg-6 col-md-6">
-								<div class="tour_list_desc">
-									<div class="rating"><i class="icon-smile voted"></i><i class="icon-smile  voted"></i><i class="icon-smile  voted"></i><i class="icon-smile  voted"></i><i class="icon-smile"></i><small>(75)</small>
-									</div>
-									<h3><strong>Orly Airport</strong> group</h3>
-									<p>Lorem ipsum dolor sit amet, quem convenire interesset ut vix, ad dicat sanctus detracto vis. Eos modus dolorum ex...</p>
-									<ul class="add_info">
-										<li>
-											<div class="tooltip_styled tooltip-effect-4">
-												<span class="tooltip-item"><i class="icon_set_1_icon-70"></i></span>
-												<div class="tooltip-content">
-													<h4>Passengers</h4> Up to 40 passengers.
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="tooltip_styled tooltip-effect-4">
-												<span class="tooltip-item"><i class="icon_set_1_icon-6"></i></span>
-												<div class="tooltip-content">
-													<h4>Pick up</h4> Hotel pick up or different place with an extra cost.
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="tooltip_styled tooltip-effect-4">
-												<span class="tooltip-item"><i class="icon_set_1_icon-13"></i></span>
-												<div class="tooltip-content">
-													<h4>Accessibility</h4> On request accessibility available.
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="tooltip_styled tooltip-effect-4">
-												<span class="tooltip-item"><i class="icon_set_1_icon-22"></i></span>
-												<div class="tooltip-content">
-													<h4>Pet allowed</h4> On request pet allowed.
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="tooltip_styled tooltip-effect-4">
-												<span class="tooltip-item"><i class="icon_set_1_icon-33"></i></span>
-												<div class="tooltip-content">
-													<h4>Baggage</h4> Large baggage drop available.
-												</div>
-											</div>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<div class="col-lg-2 col-md-2">
-								<div class="price_list">
-									<div><sup>$</sup>39*<span class="normal_price_list">$99</span><small>*From/Per person</small>
-										<p><a href="transfer/detail/abc" class="btn_1">Details</a>
-										</p>
-									</div>
-
-								</div>
-							</div>
-						</div>
-					</div>
-					<!--End strip -->
-
-					<div class="strip_all_tour_list wow fadeIn" data-wow-delay="0.1s">
-						<div class="row">
-							<div class="col-lg-4 col-md-4">
-								<div class="ribbon_3"><span>Top rated</span>
-								</div>
-								<div class="wishlist">
-									<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
-								</div>
-								<div class="img_list">
-									<a href="transfer/detail/abc"><img src="<?php echo base_url(); ?>assets/default/img/transfer_4.jpg" alt="Image">
-										<div class="short_info"></div>
-									</a>
-								</div>
-							</div>
-							<div class="col-lg-6 col-md-6">
-								<div class="tour_list_desc">
-									<div class="rating"><i class="icon-smile voted"></i><i class="icon-smile  voted"></i><i class="icon-smile  voted"></i><i class="icon-smile  voted"></i><i class="icon-smile"></i><small>(75)</small>
-									</div>
-									<h3><strong>Disneyland</strong> transfer</h3>
-									<p>Lorem ipsum dolor sit amet, quem convenire interesset ut vix, ad dicat sanctus detracto vis. Eos modus dolorum ex...</p>
-									<ul class="add_info">
-										<li>
-											<div class="tooltip_styled tooltip-effect-4">
-												<span class="tooltip-item"><i class="icon_set_1_icon-70"></i></span>
-												<div class="tooltip-content">
-													<h4>Passengers</h4> Up to 6 passengers.
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="tooltip_styled tooltip-effect-4">
-												<span class="tooltip-item"><i class="icon_set_1_icon-6"></i></span>
-												<div class="tooltip-content">
-													<h4>Pick up</h4> Hotel pick up or different place with an extra cost.
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="tooltip_styled tooltip-effect-4">
-												<span class="tooltip-item"><i class="icon_set_1_icon-13"></i></span>
-												<div class="tooltip-content">
-													<h4>Accessibility</h4> On request accessibility available.
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="tooltip_styled tooltip-effect-4">
-												<span class="tooltip-item"><i class="icon_set_1_icon-22"></i></span>
-												<div class="tooltip-content">
-													<h4>Pet allowed</h4> On request pet allowed.
-												</div>
-											</div>
-										</li>
-
-									</ul>
-								</div>
-							</div>
-							<div class="col-lg-2 col-md-2">
-								<div class="price_list">
-									<div><sup>$</sup>49*<span class="normal_price_list">$99</span><small>*From/Per person</small>
-										<p><a href="transfer/detail/abc" class="btn_1">Details</a>
-										</p>
-									</div>
-
-								</div>
-							</div>
-						</div>
-					</div>
-					<!--End strip -->
+					
 
 					<hr>
 

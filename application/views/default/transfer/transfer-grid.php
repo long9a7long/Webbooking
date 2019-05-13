@@ -142,7 +142,7 @@
 								</div>
 								<div class="img_container">
 									<a href="single_transfer.html">
-										<img src="img/transfer_2.jpg" width="800" height="533" class="img-fluid" alt="Image">
+										<img data-src="img/transfer_2.jpg" width="800" height="533" class="img-fluid lazyload" alt="Image">
 										<div class="short_info">
 											From/Per person<span class="price"><sup>$</sup>29</span>
 										</div>
@@ -170,7 +170,7 @@
 								</div>
 								<div class="img_container">
 									<a href="single_transfer.html">
-										<img src="img/transfer_1.jpg" width="800" height="533" class="img-fluid" alt="Image">
+										<img data-src="img/transfer_1.jpg" width="800" height="533" class="img-fluid lazyload" alt="Image">
 										<div class="short_info">
 											From/Per person<span class="price"><sup>$</sup>45</span>
 										</div>
@@ -201,7 +201,7 @@
 								</div>
 								<div class="img_container">
 									<a href="single_transfer.html">
-										<img src="img/transfer_3.jpg" width="800" height="533" class="img-fluid" alt="Image">
+										<img data-src="img/transfer_3.jpg" width="800" height="533" class="img-fluid lazyload" alt="Image">
 										<div class="short_info">
 											From/Per person<span class="price"><sup>$</sup>39</span>
 										</div>
@@ -229,7 +229,7 @@
 								</div>
 								<div class="img_container">
 									<a href="single_transfer.html">
-										<img src="img/transfer_4.jpg" width="800" height="533" class="img-fluid" alt="Image">
+										<img data-src="img/transfer_4.jpg" width="800" height="533" class="img-fluid lazyload" alt="Image">
 										<div class="short_info">
 											From/Per person<span class="price"><sup>$</sup>45</span>
 										</div>

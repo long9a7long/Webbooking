@@ -80,7 +80,7 @@
 								</div>
 							</div>
 							<div class="col-md-6 col-sm-12">
-								<img src="img/cards.png" width="207" height="43" alt="Cards" class="cards">
+								<img data-src="<?php echo base_url(); ?>assets/default/img/cards.png" width="207" height="43" alt="Cards" class="cards lazyload">
 							</div>
 						</div>
 						<div class="row">
@@ -109,7 +109,7 @@
 											</div>
 										</div>
 										<div class="col-8">
-											<img src="img/icon_ccv.gif" width="50" height="29" alt="ccv"><small>Last 3 digits</small>
+											<img data-src="<?php echo base_url(); ?>assets/default/img/icon_ccv.gif" width="50" height="29" alt="ccv" class="lazyload"><small>Last 3 digits</small>
 										</div>
 									</div>
 								</div>
@@ -124,7 +124,7 @@
 							Lorem ipsum dolor sit amet, vim id accusata sensibus, id ridens quaeque qui. Ne qui vocent ornatus molestie, reque fierent dissentiunt mel ea.
 						</p>
 						<p>
-							<img src="img/paypal_bt.png" alt="Image">
+							<img data-src="<?php echo base_url(); ?>assets/default/img/paypal_bt.png" alt="Image" class="lazyload">
 						</p>
 					</div>
 					<!--End step -->

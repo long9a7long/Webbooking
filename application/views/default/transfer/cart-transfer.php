@@ -39,7 +39,7 @@
 							<tr>
 								<td>
 									<div class="thumb_cart">
-										<img src="img/thumb_cart_1.jpg" alt="Image">
+										<img data-src="<?php echo base_url(); ?>assets/default/img/thumb_cart_1.jpg" alt="Image" class="lazyload">
 									</div>
 									<span class="item_cart">Orly Airport Private transfer</span>
 								</td>
@@ -61,7 +61,7 @@
 							<tr>
 								<td>
 									<div class="thumb_cart">
-										<img src="img/thumb_cart_1.jpg" alt="Image">
+										<img data-src="<?php echo base_url(); ?>assets/default/img/thumb_cart_1.jpg" alt="Image" class="lazyload">
 									</div>
 									<span class="item_cart"> Paris Disneyland Transfer</span>
 								</td>
@@ -254,7 +254,7 @@
 							</tbody>
 						</table>
 						<a class="btn_full" href="<?php echo base_url(); ?>transfer/payment">Check out</a>
-						<a class="btn_full_outline" href="#"><i class="icon-right"></i> Continue shopping</a>
+						<a class="btn_full_outline" href="<?php echo base_url(); ?>transfer/"><i class="icon-right"></i> Continue shopping</a>
 					</div>
 					<div class="box_style_4">
 						<i class="icon_set_1_icon-57"></i>

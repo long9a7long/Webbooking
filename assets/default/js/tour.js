@@ -91,8 +91,34 @@ $( document ).ready(function() {
     	let id= $(this).data('id');
         $('span.filter-item').has('a[data-type=rating][data-id='+id+']').remove();
 		remove_query_string_filter('rating', id);
-    });
-
+	});
+	//convenient
+	$(document).on('ifChecked','.filter-convenient',function(e){
+    	let id= $(this).data('id');
+	    let content="";
+    	
+	    switch(id){
+	    		case 1:
+	    			content="Điều hòa";
+	    			break;
+	    		case 2:
+	    			content="WiFi";
+	    			break;
+	    		
+	    }
+	    add_filter_items('rating',id,content);
+    	//thêm query string vào input hidden filter
+    	add_query_string_filter('rating',id);
+    	
+    	
+	});
+	//Su kien uncheck checkbox convenient
+    $(document).on('ifUnchecked','.filter-convenient',function(e){
+    	e.preventDefault();
+    	let id= $(this).data('id');
+        $('span.filter-item').has('a[data-type=rating][data-id='+id+']').remove();
+		remove_query_string_filter('rating', id);
+	});
 
     
 });
@@ -147,7 +173,7 @@ function get_parameter(name){
 	return  url.searchParams.get(name);
 
 }
-
+//loaddata
 async function get_list_tours(data) {
 	let result;
 	
@@ -486,7 +512,7 @@ function remove_query_string_filter(key_query,value_query){
 	let list_query_string=query_string.split('&');
 	if(query_string.indexOf(key_query)===-1){
 		return;
-	}
+	}	
 	let arr_query=[];
 	let list__value=[];
 	for (let i = list_query_string.length - 1; i >= 0; i--) {

@@ -6,6 +6,27 @@ class Tours_model extends CI_Model
 		return $result->row();
     }
 
+    //để lấy tour liên quan cho trang chi tiết nhà hàng
+    public function get_info_tour_in_res_detail($cate_res)
+    {
+        if($cate_res!=null)
+        {
+            $cate_item="";
+            for($i=0; $i<count($cate_res); $i++){
+                if($i!=count($cate_res)-1){
+                $cate_item.=($cate_res[$i]->category_res_id).',';
+                }
+                else $cate_item.=$cate_res[$i]->category_res_id;
+            }
+                $query = $this->db->query("SELECT *
+                FROM `tours`
+                JOIN `list_category_tour` ON `list_category_tour`.`tour_id`=`tours`.`tour_id` 
+                WHERE category_tour_id in ($cate_item) GROUP BY `tours`.`tour_id`");
+                $this->db->join('list_category_tour','list_category_tour.tour_id=tours.tour_id');
+        }
+        return $query->result();
+    }
+
     public function get_tour_info_by_slug($tour_slug){
         
         //join cột điểm trung bình review của tour

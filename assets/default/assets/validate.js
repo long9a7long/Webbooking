@@ -303,7 +303,7 @@ jQuery(document).ready(function(){
 					name_review: $('#name_review').val(),
 					email_review: $('#email_review').val(),
 					view_review:$('#view_review').val(),
-					waiter_review:$('#waiter_review'),
+					waiter_review:$('#waiter_review').val(),
 					quality_review: $('#quality_review').val(),
 					review_text: $('#review_text').val(),
 				},
@@ -318,6 +318,12 @@ jQuery(document).ready(function(){
 
 				}
 				);
+			}
+			else{
+				document.getElementById('message-review').innerHTML = validate;
+				$('#message-review').slideDown('slow');
+				$('#review_restaurant .loader').fadeOut('slow',function(){$(this).remove()});
+				$('#submit-review').removeAttr('disabled');
 			}
 		});
 
@@ -357,10 +363,11 @@ jQuery(document).ready(function(){
 	}
 	else{
 	// Success message
-	result="<div id='success_page' style='padding:20px 0'>"+
-	+"<strong >Email Sent.</strong>"+
-	+"Thank you <strong>$name_review</strong>,<br> your review has been submitted."+
+	result="<div id='success_page' style='padding:20px 0'>"
+	+"<strong >Email Sent.</strong>"
+	+"Thank you <strong>"+name_review+"</strong>,<br> your review has been submitted."
 	+"</div>";
 	}
 	return result;
 	}
+  /* ]]> */

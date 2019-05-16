@@ -11,7 +11,8 @@ class Transfer extends CI_Controller {
 
 	public function index()
 	{
-        $this -> data['title'] = "Transfer";  
+        $this -> data['title'] = "Transfer"; 
+       
         $view_style=1;
         $view=$this->input->get('view');
         if($view !==NULL){
@@ -43,6 +44,7 @@ class Transfer extends CI_Controller {
 
     public function detail()
     {
+        $this->load->model("transfers_model");
         $this -> data['title'] = "Booking transfer";
         $this -> data['after_header'] = "default/transfer/transfer-detail-slide"; 
 
@@ -62,7 +64,16 @@ class Transfer extends CI_Controller {
         $this -> data['custom_js_external'] = array(
             "https://maps.googleapis.com/maps/api/js");
 
-        $this->load->view("default/template",$this ->data);
+        $car_slug=$this->uri->segment(3);
+        $info_car=$this->transfers_model->get_transfer_info_by_slug($car_slug);
+        if($info_car==NULL)
+            redirect(base_url().'transfer');
+        else{
+            $this ->data['info_car']=$info_car;
+            //get list review of tour by tour id
+            $this ->data['reviews_car']=$this->transfers_model->getListReviewByID($info_car->car_id);
+            $this->load->view("default/template",$this ->data);
+        }
     }
     public function cart()
     {
